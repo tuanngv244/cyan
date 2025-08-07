@@ -43,46 +43,30 @@
   --pd-section: 100px;
   --gap: 30px;
 
-  // @media (max-width: 1440px) {
-  //   --h0-fs: 8rem;
-  //   --h0-lh: 7rem;
+  @media (max-width: 1680px) {
+    --spc-fs: 7rem;
+    --spc-lh: 8rem;
+  }
 
-  //   --h1-fs: 6.2rem;
-  //   --h1-lh: 8rem;
+  @media (max-width: 1440px) {
+    --spc-fs: 6rem;
+    --spc-lh: 7rem;
+  }
 
-  //   --h2-fs: 5.2rem;
-  //   --h2-lh: 6.6rem;
-
-  //   --h3-fs: 3rem;
-  //   --h3-lh: 4rem;
-  // }
-  // @media (max-width: 992px) {
-  //   --h0-fs: 6rem;
-  //   --h0-lh: 5.8rem;
-
-  //   --h1-fs: 5.2rem;
-  //   --h1-lh: 6.4rem;
-
-  //   --h2-fs: 4rem;
-  //   --h2-lh: 5rem;
-
-  //   --h3-fs: 3rem;
-  //   --h3-lh: 4rem;
-
-  //   --h4-fs: 2.3rem;
-  //   --h4-lh: 3rem;
-
-  //   --h5-fs: 1.8rem;
-  //   --h5-lh: 2.4rem;
-
-  //   --height-header: 100px;
-  //   --pd-section: 70px;
-  //   --gap: 20px;
-  //   --ptop: 120px;
-  // }
+  @media (max-width: 1024px) {
+    --spc-fs: 5rem;
+    --spc-lh: 6rem;
+  }
+  @media (max-width: 992px) {
+    --spc-fs: 4rem;
+    --spc-lh: 5rem;
+  }
   @media (max-width: 767px) {
     --spc-fs: 2rem;
     --spc-lh: 3rem;
+
+    --body15-fs: 1.125rem;
+    --body15-lh: 1.5rem;
   }
 }
 

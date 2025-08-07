@@ -28,7 +28,7 @@ $(document).ready(function () {
   // Background Squares
   (function () {
     const direction = "right"; // 'right', 'left', 'up', 'down', or 'diagonal'
-    const speed = 1;
+    const speed = 0.5;
     const borderColor = "#333";
     const squareSize = 40;
     const hoverFillColor = "#11d0f2";
@@ -335,8 +335,8 @@ $(document).ready(function () {
     );
     const horizontal = document.getElementById("prj-list-track");
 
-    const cardWidth = 2000;
-    const gap = 4;
+    const cardWidth = window.innerWidth;
+    const gap = 0;
     const totalWidth = (cardWidth + gap) * cards.length - gap;
     const viewportWidth = window.innerWidth;
     const scrollDistance = Math.max(0, totalWidth - viewportWidth);
@@ -346,7 +346,7 @@ $(document).ready(function () {
       return;
     }
 
-    console.log("View 💕-> ", totalWidth, scrollDistance);
+    console.log("View 💕-> ", window, window.innerWidth);
 
     // Create the horizontal scroll timeline
     const tl = gsap.timeline({

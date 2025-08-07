@@ -41,6 +41,7 @@
         flex-direction: column;
         gap: 1.5rem;
         z-index: 50;
+        padding: 0 1rem;
         &-line {
           display: flex;
           align-items: center;
@@ -83,16 +84,24 @@
         height: 100vh;
         overflow: hidden;
         position: relative;
+
         &-card {
-          min-width: 2000px;
-          width: 2000px;
+          min-width: 100vw;
+          width: 100vw;
           height: 100vh;
           flex-shrink: 0;
-          margin: 0 1rem;
+          margin: 0;
+          display: flex;
+          flex-direction: row;
           .bg {
-            width: 100%;
+            width: calc(100vw - 40%);
             height: 100%;
             object-fit: cover;
+          }
+          .content {
+            width: calc(100vw - 60%);
+            background-color: $white-cl;
+            height: 100%;
           }
         }
       }
@@ -108,16 +117,39 @@
     }
   }
 
-  @include xs {
-    .hero {
-      .content {
-        &-line {
-          flex-direction: column;
-          .silk {
-            width: 200px;
-            height: 120px;
+  @include sm {
+    .main-wrapper {
+      .hero {
+        .content {
+          &-line {
+            flex-direction: column;
+            .silk {
+              width: 300px;
+              height: 100px;
+            }
           }
         }
+      }
+    }
+  }
+
+  @include xs {
+    .main-wrapper {
+      .hero {
+        .content {
+          &-line {
+            flex-direction: column;
+            &.middle {
+              flex-direction: column-reverse;
+            }
+            .silk {
+              width: 300px;
+              height: 100px;
+            }
+          }
+        }
+      }
+      .projects {
       }
     }
   }
