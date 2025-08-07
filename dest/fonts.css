@@ -1,0 +1,23 @@
+@font-face {
+  font-family: "Gly";
+  src: url("../fonts/Glysa-Medium.woff2") format("woff2"),
+    url("../fonts/Glysa-Medium.woff") format("woff");
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Apt-R";
+  src: url("../fonts/SVN-Aptima.woff2") format("woff2"),
+    url("../fonts/SVN-Aptima.woff") format("woff");
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Apt-B";
+  src: url("../fonts/SVN-Aptimabold.woff2") format("woff2"),
+    url("../fonts/SVN-Aptimabold.woff") format("woff");
+  font-style: normal;
+  font-display: swap;
+}

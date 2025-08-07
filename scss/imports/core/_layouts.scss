@@ -1,0 +1,230 @@
+@use "common" as *;
+@-ms-viewport {
+  width: device-width;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: antialiased;
+  -webkit-text-rendering: optimizeSpeed;
+  text-rendering: optimizeSpeed;
+  box-sizing: border-box;
+  font-kerning: none;
+}
+
+html {
+  font-size: 62.5%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  width: 100%;
+  max-width: $container-max-width;
+  margin: auto;
+  @include text(
+    var(--body12-fs),
+    $font-main,
+    var(--body12-lh),
+    $black-cl,
+    none
+  );
+  background: $white-cl;
+  overflow-x: hidden;
+  @include customscroll();
+
+  .wrapper {
+    position: relative;
+    z-index: 10;
+
+    .--pdtop {
+      padding-top: var(--ptop);
+    }
+  }
+
+  .mainwrapper {
+    width: 100%;
+    margin: auto;
+    @include visible;
+    position: relative;
+    z-index: 12;
+  }
+
+  section {
+    position: relative;
+    will-change: transform;
+
+    &.--bg-gray {
+      background: #f1f1f1;
+    }
+  }
+
+  .--pthead {
+    padding-top: calc(var(--height-header) + 30px);
+
+    @include md {
+      padding-top: calc(var(--height-header) + 50px);
+    }
+
+    @include xs {
+      padding-top: calc(var(--height-header) + 30px);
+    }
+  }
+
+  .--pt {
+    padding-top: var(--pd-section);
+  }
+
+  .--pb {
+    padding-bottom: var(--pd-section);
+  }
+
+  .--ptb {
+    padding: var(--pd-section) 0;
+  }
+
+  .overlay {
+    @include size(100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 99;
+    opacity: 0;
+    pointer-events: none;
+    @include transition($t);
+  }
+
+  .container {
+    width: 100%;
+    padding-right: var(--gap);
+    padding-left: var(--gap);
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+    z-index: 9;
+
+    &.--small {
+      max-width: 1100px;
+    }
+  }
+
+  .container-fluid {
+    width: 100%;
+    max-width: 2500px;
+    padding-right: 50px;
+    padding-left: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+
+    @media (max-width: $md-max) {
+      max-width: 1230px;
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+
+    @include xs {
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+  }
+
+  .row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: calc(var(--gap) * -1);
+    margin-left: calc(var(--gap) * -1);
+  }
+
+  .no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .no-gap > .col,
+  .no-gap > [class*="col-"] {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .--grid-12 {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 30px;
+
+    @include sm {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &.navshow {
+    height: 100vh;
+    overflow: hidden;
+
+    .overlay {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .header {
+      &.--bg-white {
+        background: none;
+        box-shadow: initial;
+      }
+
+      &__logo {
+        opacity: 0;
+      }
+
+      &__btnmenu {
+        .button {
+          span {
+            background: $black-cl;
+          }
+        }
+
+        .text {
+          opacity: 0;
+        }
+      }
+    }
+
+    .nav {
+      @include transform(translateX(0%));
+    }
+  }
+
+  @media (min-width: $xxs-min) {
+    .container {
+      max-width: 540px;
+    }
+  }
+
+  @media (min-width: $xs-min) {
+    .container {
+      max-width: 720px;
+    }
+  }
+
+  @media (min-width: $sm-min) {
+    .container {
+      max-width: 100%;
+    }
+  }
+
+  @media (min-width: $md-min) {
+    .container {
+      max-width: 1230px;
+    }
+  }
+
+  @media (min-width: $lg-min) {
+    .container {
+      max-width: $container-width;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+@use "../core/common" as *;
+
+.homepage {
+  .container-fluid {
+    .text {
+      font-family: $ff-gly;
+      font-size: var(--h1-fs);
+    }
+  }
+}

@@ -1,0 +1,6 @@
+@use "common" as *;
+.nav {
+  @include xs {
+    display: none;
+  }
+}

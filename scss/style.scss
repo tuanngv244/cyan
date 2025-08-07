@@ -1,0 +1,25 @@
+/* Core variables and mixins*/
+@use "imports/core/reset";
+@use "imports/core/common" as *;
+@use "imports/core/layouts";
+@use "imports/core/loading";
+@use "imports/core/elements";
+@use "imports/core/components";
+@use "imports/core/libs";
+
+/* Navigation, header, footer*/
+@use "imports/core/header";
+@use "imports/core/nav";
+@use "imports/core/footer";
+
+/* Pages*/
+@use "imports/pages/home";
+// @use "imports/pages/about";
+// @use "imports/pages/blog";
+// @use "imports/pages/hiring";
+// @use "imports/pages/contact";
+// @use "imports/pages/solutions";
+// @use "imports/pages/advertising";
+// @use "imports/pages/studio";
+// @use "imports/pages/privacy";
+// @use "imports/pages/notfound";

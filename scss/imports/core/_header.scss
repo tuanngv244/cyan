@@ -1,0 +1,18 @@
+@use "common" as *;
+.header {
+  @include transition($t);
+
+  .container-fluid {
+  }
+
+  @include xs {
+    .profile {
+      .hamburger {
+        margin: 0 0 0 20px;
+      }
+      .language {
+        display: none;
+      }
+    }
+  }
+}

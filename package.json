@@ -1,0 +1,25 @@
+{
+  "name": "Cyan project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "task"
+  ],
+  "author": "Cyan",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "^1.5.3",
+    "load-grunt-tasks": "^5.1.0"
+  },
+  "dependencies": {
+    "grunt-browser-sync": "^2.2.0",
+    "grunt-contrib-cssmin": "^4.0.0",
+    "grunt-contrib-sass": "^2.0.0",
+    "grunt-contrib-uglify": "^5.2.1",
+    "grunt-contrib-watch": "^1.1.0"
+  }
+}
