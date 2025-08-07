@@ -1,10 +1,13 @@
 :root {
-  // fontsize text
-  --h1-fs: 4rem;
-  --h1-lh: 5rem;
+  --spc-fs: 8rem;
+  --spc-lh: 9rem;
 
-  --h2-fs: 3rem;
-  --h2-lh: 4rem;
+  // fontsize text
+  --h1-fs: 5rem;
+  --h1-lh: 6rem;
+
+  --h2-fs: 4rem;
+  --h2-lh: 5rem;
 
   --h3-fs: 3rem;
   --h3-lh: 4rem;
@@ -15,8 +18,8 @@
   --h5-fs: 1.25rem;
   --h5-lh: 2.5rem;
 
-  --body15-fs: 1.5rem;
-  --body15-lh: 2rem;
+  --h6-fs: 1rem;
+  --h6-lh: 1.5rem;
 
   --body15-fs: 1.5rem;
   --body15-lh: 2rem;
@@ -28,7 +31,7 @@
   --body10-lh: 1.5rem;
 
   --body09-fs: 0.875rem;
-  --body09-lh: 1.1785rem;
+  --body09-lh: 1.25rem;
 
   --body08-fs: 0.75rem;
   --body08-lh: 1.125rem;
@@ -78,19 +81,8 @@
   //   --ptop: 120px;
   // }
   @media (max-width: 767px) {
-    --h1-fs: 1.875rem;
-    --h1-lh: 2.5rem;
-
-    --h5-fs: 1.25rem;
-    --h5-lh: 1.375rem;
-
-    --height-header: 80px;
-
-    --body09-fs: 0.75rem;
-    --body09-lh: 1.25rem;
-
-    --gap: 15px;
-    --pd-section: 60px;
+    --spc-fs: 2rem;
+    --spc-lh: 3rem;
   }
 }
 

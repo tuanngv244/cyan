@@ -1,10 +1,124 @@
 @use "../core/common" as *;
 
 .homepage {
+  background-color: $black-cl;
+  width: 100vw;
+  overflow-x: hidden;
   .container-fluid {
     .text {
       font-family: $ff-gly;
       font-size: var(--h1-fs);
+    }
+  }
+
+  .bg-squares-canvas {
+    border: none;
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    canvas {
+      width: 100% !important;
+      height: 100% !important;
+      display: block;
+    }
+  }
+
+  .main-wrapper {
+    position: relative;
+    z-index: 2;
+    .hero {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      z-index: 2;
+      .content {
+        @include mid();
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        z-index: 50;
+        &-line {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 2rem;
+          h1,
+          span {
+            font-family: $ff-gly;
+            font-size: var(--spc-fs);
+            line-height: var(--spc-lh);
+            font-weight: 400;
+            color: $white-cl;
+            text-transform: uppercase;
+            white-space: nowrap;
+          }
+
+          .intro {
+            font-family: $ff-apt-r;
+            font-size: var(--body09-fs);
+            line-height: var(--body09-lh);
+            font-weight: 400;
+            color: $white-cl;
+          }
+
+          .silk {
+            width: 500px;
+            height: 120px;
+            canvas {
+              width: 100% !important;
+              height: 100% !important;
+              display: block;
+            }
+          }
+        }
+      }
+    }
+
+    .projects {
+      &__list {
+        height: 100vh;
+        overflow: hidden;
+        position: relative;
+        &-card {
+          min-width: 2000px;
+          width: 2000px;
+          height: 100vh;
+          flex-shrink: 0;
+          margin: 0 1rem;
+          .bg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+      &__track {
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+        align-items: center;
+        padding-left: 2rem;
+        will-change: transform;
+        width: max-content;
+      }
+    }
+  }
+
+  @include xs {
+    .hero {
+      .content {
+        &-line {
+          flex-direction: column;
+          .silk {
+            width: 200px;
+            height: 120px;
+          }
+        }
+      }
     }
   }
 }

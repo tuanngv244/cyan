@@ -1,8 +1,27 @@
 @use "common" as *;
 .header {
   @include transition($t);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
 
   .container-fluid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+
+    .branch {
+      a {
+        font-size: var(--body15-fs);
+        line-height: var(--body15-lh);
+        color: $white-cl;
+        font-family: $ff-gly;
+        font-weight: 400;
+      }
+    }
   }
 
   @include xs {

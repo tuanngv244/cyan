@@ -7,19 +7,23 @@
       content="width=device-width, initial-scale=1.0 , maximum-scale=1.0, user-scalable=0"
     />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Cyan</title>
+    <title>Cyan Nguyen.</title>
     <link rel="icon" href="favicon.ico" />
-    <meta name="title" content="Notifood" />
+    <meta name="title" content="Cyan" />
     <meta name="description" content="" />
     <!-- meta facebook -->
     <meta property="og:locale" content="en" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Notifood" />
+    <meta property="og:title" content="Cyan" />
     <meta property="og:description" content="" />
     <meta property="og:url" content="" />
-    <meta property="og:site_name" content="Notifood" />
+    <meta property="og:site_name" content="Cyan" />
     <!-- <meta property="og:image" content="img/thumbnail-fb.jpg" /> -->
 
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/lenis@1.3.8/dist/lenis.css"
+    />
     <link rel="stylesheet" href="dest/style.min.css" />
     <link rel="stylesheet" href="dest/fonts.css" />
   </head>
@@ -27,14 +31,62 @@
   <body class="homepage">
     <div class="loading"></div>
     <header class="header">
-      <div class="container-fluid">
-        <!--  -->
-        <p class="text">BBB</p>
+      <div class="container-fluid wrap">
+        <div class="branch">
+          <a href="/">Cyan Nguyen.</a>
+        </div>
+        <div class="hamburger"></div>
       </div>
     </header>
-
     <div class="overlay"></div>
-    <main class="mainwrapper"></main>
+    <div id="bg-squares-canvas" class="bg-squares-canvas"></div>
+    <main class="main-wrapper">
+      <section class="hero">
+        <div class="content">
+          <div class="content-line">
+            <h1 class="title">Frontend</h1>
+            <div id="silk-grey" class="silk"></div>
+          </div>
+          <div class="content-line">
+            <div id="silk-blue" class="silk"></div>
+            <h1 class="title">Developer</h1>
+          </div>
+          <div class="content-line">
+            <h1 class="title">Cyan Ng.</h1>
+            <div>
+              <p class="intro">
+                My nickname is Cyan, I'm a Frontend Developer with 4 years of
+                experience, and I always want to bring great experience to
+                clients. I love this job, always to learn and build up skills.
+                <br />
+                I always try my best in every product with my co-workers. It's
+                great to connect with someone who shares similar interests!
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="projects">
+        <div id="prj-list" class="projects__list">
+          <div id="prj-list-track" class="projects__track horizontal">
+            <!-- Items -->
+            <div class="projects__list-card">
+              <img class="bg" src="https://images.unsplash.com/photo-1506426305266-2b7e740fd828?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Project 1" />
+            </div>
+                 <div class="projects__list-card">
+              <img class="bg" src="https://images.unsplash.com/photo-1506426305266-2b7e740fd828?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Project 1" />
+            </div>
+                 <div class="projects__list-card">
+              <img class="bg" src="https://images.unsplash.com/photo-1506426305266-2b7e740fd828?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Project 1" />
+            </div>
+                 <div class="projects__list-card">
+              <img class="bg" src="https://images.unsplash.com/photo-1506426305266-2b7e740fd828?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Project 1" />
+                   <div class="projects__list-card">
+              <img class="bg" src="https://images.unsplash.com/photo-1506426305266-2b7e740fd828?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Project 1" />
+            </div>
+          </div>
+      </section>
+    </main>
     <footer class="footer"></footer>
 
     <!-- Global JS -->
