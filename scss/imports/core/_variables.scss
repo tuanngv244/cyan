@@ -71,18 +71,20 @@
 }
 
 /* fonts family */
-$ff-apt-r: "Apt-R";
-$ff-apt-b: "Apt-B";
-$ff-gly: "Gly";
+$ff-apt-r: 'Apt-R';
+$ff-apt-b: 'Apt-B';
+$ff-gly: 'Gly';
 
 /*primary colors*/
-$main-cl: #086d46;
+$main-cl: #0b5f91;
 
 $white-cl: #ffffff;
 $yellow-cl: #ffce02;
+$yellow-light-cl: #fdf4d9;
+$blue-light-cl: #7ad4e4;
 $gray-cl: #f4f4f4;
 $black-cl: #000000;
-$gray-text-cl: #555555;
+$gray-text-cl: #f3efef;
 $lightgray-cl: #c4c4c4;
 $line-cl: #e5e5e5;
 
@@ -97,11 +99,11 @@ $zIndex-lv5: 999;
 
 // timing transition
 $t: 0.4s;
-$cubic: cubic-bezier(0.59, 0.29, 0.15, 0.93);
+$cubic: cubic-bezier(0.81, 0.2, 0.32, 0.93);
 
 /*font families*/
-$font-stack: "Open Sans", sans-serif;
-$font-main: "Nu-el";
+$font-stack: 'Open Sans', sans-serif;
+$font-main: 'Nu-el';
 
 //============================================================//
 

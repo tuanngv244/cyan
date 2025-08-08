@@ -1,4 +1,4 @@
-@use "../core/common" as *;
+@use '../core/common' as *;
 
 .homepage {
   background-color: $black-cl;
@@ -59,7 +59,7 @@
           }
 
           .intro {
-            font-family: $ff-apt-r;
+            font-family: $ff-gly;
             font-size: var(--body09-fs);
             line-height: var(--body09-lh);
             font-weight: 400;
@@ -75,6 +75,18 @@
               display: block;
             }
           }
+        }
+      }
+      .explore {
+        @include mid();
+        top: initial !important;
+        bottom: 2rem;
+        p {
+          font-family: $ff-gly;
+          font-size: var(--body12-fs);
+          line-height: var(--body12-lh);
+          font-weight: 400;
+          color: $white-cl;
         }
       }
     }
@@ -93,15 +105,78 @@
           margin: 0;
           display: flex;
           flex-direction: row;
+          &:nth-child(odd) {
+            .wrap {
+              background-color: $yellow-light-cl;
+            }
+          }
+          &:nth-child(even) {
+            .wrap {
+              background-color: $white-cl;
+            }
+          }
           .bg {
-            width: calc(100vw - 40%);
+            width: calc(100vw - 50%);
             height: 100%;
             object-fit: cover;
           }
-          .content {
-            width: calc(100vw - 60%);
-            background-color: $white-cl;
+          .wrap {
+            width: calc(100vw - 50%);
             height: 100%;
+            padding: 3rem 3rem 1rem 3rem;
+            display: flex;
+            flex-direction: column;
+
+            .content {
+              padding-left: 10rem;
+              margin-top: 2rem;
+            }
+
+            .number {
+              font-size: var(--spc-fs);
+              line-height: var(--spc-lh);
+              font-weight: 300;
+              color: $black-cl;
+              font-family: $ff-gly;
+            }
+            .sub-title {
+              font-size: var(--body15-fs);
+              line-height: var(--body15-lh);
+              font-weight: 400;
+              color: $black-cl;
+              font-family: $ff-gly;
+            }
+            .title {
+              font-size: var(--h2-fs);
+              line-height: var(--h2-lh);
+              font-weight: 700;
+              color: $black-cl;
+              font-family: $ff-gly;
+              margin: 0.5rem 0 2rem 0;
+              text-transform: uppercase;
+              letter-spacing: 1.2;
+            }
+            .desc {
+              max-width: 1000px;
+              font-size: var(--body12-fs);
+              line-height: var(--body15-lh);
+              font-weight: 400;
+              color: $black-cl;
+              font-family: $ff-apt-r;
+            }
+            .view {
+              margin-top: 2rem;
+            }
+          }
+          .galleries {
+            margin-top: auto;
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+            grid-template-rows: 20px;
+            &__item {
+              border: 1px dashed $black-cl;
+            }
           }
         }
       }
@@ -113,6 +188,87 @@
         padding-left: 2rem;
         will-change: transform;
         width: max-content;
+      }
+    }
+
+    .skills {
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 1rem 0;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 2rem 0;
+
+      .marquee__list {
+        display: flex;
+        align-items: center;
+        gap: 0 3rem;
+        animation-play-state: paused;
+        font-size: var(--h1-fs);
+        line-height: var(--h1-lh);
+        font-weight: 400;
+        color: $white-cl;
+        font-family: $ff-gly;
+        &-item {
+          display: inline-block;
+          white-space: nowrap;
+          will-change: transform;
+          // animation: marquee 10s linear infinite;
+          p {
+            font-size: var(--h1-fs);
+            line-height: var(--h1-lh);
+            font-weight: 400;
+            color: $white-cl;
+            font-family: $ff-gly;
+          }
+        }
+
+        @keyframes marquee {
+          from {
+            transform: translateX(100%);
+          }
+          to {
+            transform: translateX(-100%);
+          }
+        }
+      }
+    }
+  }
+
+  @include lg {
+    .main-wrapper {
+      .projects {
+        &__list {
+          &-card {
+            .wrap {
+              padding: 1.5rem 1.5rem 1rem 1.5rem;
+              .number {
+                font-size: 5rem;
+                line-height: 6rem;
+              }
+              .content {
+                margin: 0.5rem;
+                padding-left: 5rem;
+                .sub-title {
+                }
+                .title {
+                  font-size: 3rem;
+                  line-height: 4rem;
+                  margin: 0.5rem 0 1.25rem 0;
+                }
+                .desc {
+                  font-size: 1rem;
+                  line-height: 1.5rem;
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

@@ -1,7 +1,7 @@
 /////////////////////////// SCROLL ///////////////////////////////
 $(document).ready(function () {
-  let header = $(".header"),
-    btnMenu = $(".header__btnmenu"),
+  let header = $('.header'),
+    btnMenu = $('.header__btnmenu'),
     mobile,
     tablet,
     screen = {
@@ -11,6 +11,7 @@ $(document).ready(function () {
     };
 
   gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(SplitText);
 
   // DETECT DEVICE
   function mobileDetect() {
@@ -27,21 +28,22 @@ $(document).ready(function () {
 
   // Background Squares
   (function () {
-    const direction = "right"; // 'right', 'left', 'up', 'down', or 'diagonal'
+    const direction = 'right'; // 'right', 'left', 'up', 'down', or 'diagonal'
     const speed = 0.5;
-    const borderColor = "#333";
+    const borderColor = '#333';
     const squareSize = 40;
-    const hoverFillColor = "#11d0f2";
+    const hoverFillColor = '#11d0f2';
 
-    const canvas = document.createElement("canvas");
-    canvas.className = "squares-canvas";
-    document.getElementById("bg-squares-canvas").appendChild(canvas);
-    const ctx = canvas.getContext("2d");
+    const canvas = document.createElement('canvas');
+    canvas.className = 'squares-canvas';
+    document.getElementById('bg-squares-canvas').appendChild(canvas);
+    const ctx = canvas.getContext('2d');
 
     let requestRef = null;
     let numSquaresX, numSquaresY;
     let gridOffset = { x: 0, y: 0 };
     let hoveredSquare = null;
+    let isVisible = true;
 
     function resizeCanvas() {
       canvas.width = canvas.offsetWidth;
@@ -81,39 +83,39 @@ $(document).ready(function () {
         0,
         canvas.width / 2,
         canvas.height / 2,
-        Math.sqrt(canvas.width ** 2 + canvas.height ** 2) / 2
+        Math.sqrt(canvas.width ** 2 + canvas.height ** 2) / 2,
       );
-      gradient.addColorStop(0, "rgba(0, 0, 0, 0)");
+      gradient.addColorStop(0, 'rgba(0, 0, 0, 0)');
 
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
 
     function updateAnimation() {
+      // Only animate if visible
+      if (!isVisible) {
+        requestRef = requestAnimationFrame(updateAnimation);
+        return;
+      }
+
       const effectiveSpeed = Math.max(speed, 0.1);
 
       switch (direction) {
-        case "right":
-          gridOffset.x =
-            (gridOffset.x - effectiveSpeed + squareSize) % squareSize;
+        case 'right':
+          gridOffset.x = (gridOffset.x - effectiveSpeed + squareSize) % squareSize;
           break;
-        case "left":
-          gridOffset.x =
-            (gridOffset.x + effectiveSpeed + squareSize) % squareSize;
+        case 'left':
+          gridOffset.x = (gridOffset.x + effectiveSpeed + squareSize) % squareSize;
           break;
-        case "up":
-          gridOffset.y =
-            (gridOffset.y + effectiveSpeed + squareSize) % squareSize;
+        case 'up':
+          gridOffset.y = (gridOffset.y + effectiveSpeed + squareSize) % squareSize;
           break;
-        case "down":
-          gridOffset.y =
-            (gridOffset.y - effectiveSpeed + squareSize) % squareSize;
+        case 'down':
+          gridOffset.y = (gridOffset.y - effectiveSpeed + squareSize) % squareSize;
           break;
-        case "diagonal":
-          gridOffset.x =
-            (gridOffset.x - effectiveSpeed + squareSize) % squareSize;
-          gridOffset.y =
-            (gridOffset.y - effectiveSpeed + squareSize) % squareSize;
+        case 'diagonal':
+          gridOffset.x = (gridOffset.x - effectiveSpeed + squareSize) % squareSize;
+          gridOffset.y = (gridOffset.y - effectiveSpeed + squareSize) % squareSize;
           break;
       }
 
@@ -121,40 +123,18 @@ $(document).ready(function () {
       requestRef = requestAnimationFrame(updateAnimation);
     }
 
-    function handleMouseMove(event) {
-      const rect = canvas.getBoundingClientRect();
-      const mouseX = event.clientX - rect.left;
-      const mouseY = event.clientY - rect.top;
-
-      const startX = Math.floor(gridOffset.x / squareSize) * squareSize;
-      const startY = Math.floor(gridOffset.y / squareSize) * squareSize;
-
-      const hoveredSquareX = Math.floor(
-        (mouseX + gridOffset.x - startX) / squareSize
-      );
-      const hoveredSquareY = Math.floor(
-        (mouseY + gridOffset.y - startY) / squareSize
-      );
-
-      if (
-        !hoveredSquare ||
-        hoveredSquare.x !== hoveredSquareX ||
-        hoveredSquare.y !== hoveredSquareY
-      ) {
-        hoveredSquare = { x: hoveredSquareX, y: hoveredSquareY };
-      }
-    }
-
-    function handleMouseLeave() {
-      hoveredSquare = null;
-    }
-
-    window.addEventListener("resize", resizeCanvas);
-    canvas.addEventListener("mousemove", handleMouseMove);
-    canvas.addEventListener("mouseleave", handleMouseLeave);
+    window.addEventListener('resize', resizeCanvas);
 
     resizeCanvas();
     requestRef = requestAnimationFrame(updateAnimation);
+
+    window.cleanupSquares = function () {
+      if (requestRef) {
+        cancelAnimationFrame(requestRef);
+      }
+      window.removeEventListener('resize', resizeCanvas);
+      canvas.remove();
+    };
   })();
 
   // Scroll Smooth Lenis
@@ -164,33 +144,25 @@ $(document).ready(function () {
       autoRaf: true,
     });
 
-    lenis.on("scroll", ScrollTrigger.update);
+    lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time) => {
       lenis.raf(time * 1000); // Convert time from seconds to milliseconds
     });
 
     // Disable lag smoothing in GSAP to prevent any delay in scroll animations
     gsap.ticker.lagSmoothing(0);
-
-    // Use requestAnimationFrame to continuously update the scroll
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
   })();
 
   // Background Silk
   (function () {
     const hexToNormalizedRGB = (hex) => {
-      hex = hex.replace("#", "");
+      hex = hex.replace('#', '');
       return [
         parseInt(hex.slice(0, 2), 16) / 255,
         parseInt(hex.slice(2, 4), 16) / 255,
         parseInt(hex.slice(4, 6), 16) / 255,
       ];
     };
-
     const vertexShader = `
       varying vec2 vUv;
       varying vec3 vPosition;
@@ -200,8 +172,7 @@ $(document).ready(function () {
         vUv = uv;
         gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
       }
-`;
-
+    `;
     const fragmentShader = `
         varying vec2 vUv;
         varying vec3 vPosition;
@@ -248,19 +219,23 @@ $(document).ready(function () {
         }
     `;
 
+    const renderers = [];
+    const scenes = [];
+    let isVisible = true;
+
     // === CONFIGURABLE UNIFORMS ===
     const configs = {
       grey: {
         speed: 1,
         scale: 1,
-        color: "#7B7481",
+        color: '#7B7481',
         noiseIntensity: 1.5,
         rotation: 0,
       },
       blue: {
         speed: 1,
         scale: 1,
-        color: "#11d0f2",
+        color: '#11d0f2',
         noiseIntensity: 1.5,
         rotation: 0,
       },
@@ -271,10 +246,14 @@ $(document).ready(function () {
       const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 10);
       camera.position.z = 1;
 
-      const renderer = new THREE.WebGLRenderer({ antialias: true });
+      const renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        powerPreference: 'high-performance',
+      });
       renderer.setSize(window.innerWidth, window.innerHeight);
 
       const ele = document.getElementById(parentId);
+      if (!ele) return; // Safety check
       ele.appendChild(renderer.domElement);
 
       // Convert color to normalized RGB
@@ -299,41 +278,70 @@ $(document).ready(function () {
       const mesh = new THREE.Mesh(geometry, material);
       scene.add(mesh);
 
-      // Resize handler
-      window.addEventListener(
-        "resize",
-        () => {
+      // Store for cleanup
+      scenes.push(scene);
+      renderers.push(renderer);
+
+      // Optimized resize handler
+      let resizeTimeout;
+      const handleResize = () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
           renderer.setSize(window.innerWidth, window.innerHeight);
-        },
-        false
-      );
+        }, 100);
+      };
+
+      window.addEventListener('resize', handleResize);
 
       // Animation loop
       let clock = new THREE.Clock();
+      let animationId;
 
       function animate() {
-        requestAnimationFrame(animate);
+        animationId = requestAnimationFrame(animate);
 
-        uniforms.uTime.value += clock.getDelta();
-
-        renderer.render(scene, camera);
+        // Only render if visible
+        if (isVisible) {
+          uniforms.uTime.value += clock.getDelta();
+          renderer.render(scene, camera);
+        }
       }
 
       animate();
     };
-    renderShape(configs.grey, "silk-grey");
-    renderShape(configs.blue, "silk-blue");
+
+    // Visibility API
+    function handleVisibilityChange() {
+      isVisible = !document.hidden;
+    }
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    renderShape(configs.grey, 'silk-grey');
+    renderShape(configs.blue, 'silk-blue');
+
+    // Cleanup function
+    window.cleanupSilk = function () {
+      scenes.forEach((scene) => {
+        scene.traverse((object) => {
+          if (object.geometry) object.geometry.dispose();
+          if (object.material) object.material.dispose();
+        });
+      });
+
+      renderers.forEach((renderer) => {
+        renderer.dispose();
+      });
+
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
   })();
 
   // Scroll Cards
   (function () {
-    const cards = document.querySelectorAll(
-      ".homepage .projects .projects__list-card"
-    );
-    const container = document.querySelector(
-      ".homepage .projects .projects__list"
-    );
-    const horizontal = document.getElementById("prj-list-track");
+    const cards = document.querySelectorAll('.homepage .projects .projects__list-card');
+    const cardsImgs = document.querySelectorAll('.homepage .projects .projects__list-card img');
+    const container = document.querySelector('.homepage .projects .projects__list');
+    const horizontal = document.getElementById('prj-list-track');
 
     const cardWidth = window.innerWidth;
     const gap = 0;
@@ -342,18 +350,16 @@ $(document).ready(function () {
     const scrollDistance = Math.max(0, totalWidth - viewportWidth);
 
     if (!horizontal || !container) {
-      console.error("Horizontal track or container not found.");
+      console.error('Horizontal track or container not found.');
       return;
     }
-
-    console.log("View 💕-> ", window, window.innerWidth);
 
     // Create the horizontal scroll timeline
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: container,
-        start: "top top",
-        end: () => `+=${scrollDistance + window.innerHeight}`,
+        start: 'top top',
+        end: () => `+=${scrollDistance + 1000}`,
         scrub: 1,
         pin: true,
         anticipatePin: 1,
@@ -367,22 +373,8 @@ $(document).ready(function () {
     // Animate the horizontal movement
     tl.to(horizontal, {
       x: -scrollDistance,
-      ease: "none",
+      ease: 'none',
       duration: 1,
-    });
-
-    // Add individual card animations (optional)
-    tl.from(cards, {
-      y: 0,
-      duration: 0.8,
-      stagger: 0.2,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: container,
-        start: "top 80%",
-        end: "top 20%",
-        toggleActions: "play none none reverse",
-      },
     });
 
     // draw shapes
@@ -390,32 +382,85 @@ $(document).ready(function () {
       cards,
       {
         scale: 0.9,
-        clipPath: "inset(30% 30% 30% 30%)",
+        clipPath: 'inset(30% 30% 30% 30%)',
       },
       {
-        clipPath: "inset(0% 0% 0% 0%)",
+        clipPath: 'inset(0% 0% 0% 0%)',
         scale: 1,
-        ease: "none",
+        ease: 'none',
+        duration: 0.3,
         scrollTrigger: {
           trigger: container,
-          start: "start start+=30%",
-          end: "end end",
+          start: 'start start+=30%',
+          end: 'end end',
           scrub: 1,
           invalidateOnRefresh: true,
         },
-      }
+      },
     );
+    // tl.fromTo(
+    //   cardsImgs,
+    //   {
+    //     scale: 0.9,
+    //   },
+    //   {
+    //     scale: 1,
+    //     ease: "none",
+    //     scrollTrigger: {
+    //       trigger: container,
+    //       start: "start start+=30%",
+    //       end: "end end",
+    //       scrub: 1,
+    //       invalidateOnRefresh: true,
+    //     },
+    //   }
+    // );
 
-    // Handle resize
+    // Optimized resize handler
+    let resizeTimeout;
     const handleResize = () => {
-      ScrollTrigger.refresh();
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 250);
     };
-    window.addEventListener("resize", handleResize);
+
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup function
+    window.cleanupScrollCards = function () {
+      window.removeEventListener('resize', handleResize);
+      ScrollTrigger.getAll().forEach((trigger) => {
+        if (trigger.trigger === container) {
+          trigger.kill();
+        }
+      });
+    };
+  })();
+
+  // Marquee Skills
+  (function () {
+    const marquee = document.querySelector('.skills .previous');
+    const marqueeNext = document.querySelector('.skills .next');
+    const contentWidth = marquee.offsetWidth;
+
+    gsap.to(marquee, {
+      x: `-${contentWidth / 2}px`,
+      duration: 30,
+      ease: 'linear',
+      repeat: -1,
+    });
+    gsap.to(marqueeNext, {
+      x: `${contentWidth / 2}px`,
+      duration: 35,
+      ease: 'linear',
+      repeat: 1,
+    });
   })();
 
   // INIT
   function init() {
-    $("body")
+    $('body')
       .imagesLoaded()
       .progress({ background: true }, function (instance, image) {})
       .always(function (instance) {
@@ -431,4 +476,11 @@ $(document).ready(function () {
       });
   }
   init();
+
+  // Global cleanup function for page unload
+  window.addEventListener('beforeunload', function () {
+    if (window.cleanupSquares) window.cleanupSquares();
+    if (window.cleanupSilk) window.cleanupSilk();
+    if (window.cleanupScrollCards) window.cleanupScrollCards();
+  });
 });

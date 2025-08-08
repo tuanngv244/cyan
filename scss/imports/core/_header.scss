@@ -1,10 +1,11 @@
-@use "common" as *;
+@use 'common' as *;
 .header {
   @include transition($t);
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 100;
+  z-index: 201;
+  width: 100vw;
 
   .container-fluid {
     display: flex;
@@ -17,9 +18,28 @@
       a {
         font-size: var(--body15-fs);
         line-height: var(--body15-lh);
-        color: $white-cl;
+        color: $gray-text-cl;
+        // mix-blend-mode: difference;
         font-family: $ff-gly;
         font-weight: 400;
+        mix-blend-mode: difference;
+      }
+      &.is-active {
+        a {
+          color: $black-cl;
+          transition: all 0.25s $cubic;
+        }
+      }
+    }
+    .nav {
+      .contact {
+        font-size: var(--body15-fs);
+        line-height: var(--body15-lh);
+        color: $gray-text-cl;
+        // mix-blend-mode: difference;
+        font-family: $ff-gly;
+        font-weight: 400;
+        mix-blend-mode: difference;
       }
     }
   }
