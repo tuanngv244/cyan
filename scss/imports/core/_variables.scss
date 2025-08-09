@@ -1,6 +1,6 @@
 :root {
-  --spc-fs: 8rem;
-  --spc-lh: 9rem;
+  --spc-fs: 10rem;
+  --spc-lh: 11rem;
 
   // fontsize text
   --h1-fs: 5rem;
@@ -43,9 +43,14 @@
   --pd-section: 100px;
   --gap: 30px;
 
+  @media (max-width: 1800px) {
+    --spc-fs: 8rem;
+    --spc-lh: 9rem;
+  }
+
   @media (max-width: 1680px) {
-    --spc-fs: 7rem;
-    --spc-lh: 8rem;
+    --spc-fs: 6rem;
+    --spc-lh: 7rem;
   }
 
   @media (max-width: 1440px) {

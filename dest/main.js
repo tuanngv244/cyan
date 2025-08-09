@@ -141,7 +141,11 @@ $(document).ready(function () {
   (function () {
     const lenis = new Lenis({
       smooth: true,
-      autoRaf: true,
+      autoRaf: false,
+      lerp: 0.1,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+      infinite: false,
     });
 
     lenis.on('scroll', ScrollTrigger.update);
@@ -236,8 +240,8 @@ $(document).ready(function () {
         speed: 1,
         scale: 1,
         color: '#11d0f2',
-        noiseIntensity: 1.5,
-        rotation: 0,
+        noiseIntensity: 6,
+        rotation: 1,
       },
     };
 

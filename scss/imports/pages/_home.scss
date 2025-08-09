@@ -128,13 +128,13 @@
             flex-direction: column;
 
             .content {
-              padding-left: 10rem;
+              padding-left: 8rem;
               margin-top: 2rem;
             }
 
             .number {
-              font-size: var(--spc-fs);
-              line-height: var(--spc-lh);
+              font-size: 6rem;
+              line-height: 7rem;
               font-weight: 300;
               color: $black-cl;
               font-family: $ff-gly;
@@ -158,8 +158,8 @@
             }
             .desc {
               max-width: 1000px;
-              font-size: var(--body12-fs);
-              line-height: var(--body15-lh);
+              font-size: var(--body10-fs);
+              line-height: var(--body12-lh);
               font-weight: 400;
               color: $black-cl;
               font-family: $ff-apt-r;
