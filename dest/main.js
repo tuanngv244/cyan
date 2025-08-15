@@ -24,11 +24,23 @@ $(document).ready(function () {
       tablet = false;
     }
   }
-  mobileDetect();
 
-  // Background Squares
-  (function () {
-    const direction = 'right'; // 'right', 'left', 'up', 'down', or 'diagonal'
+  // Scroll Smooth Lenis
+  function smoothLenis(){
+    const lenis = new Lenis();
+
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000); 
+    });
+
+    // Disable lag smoothing in GSAP to prevent any delay in scroll animations
+    gsap.ticker.lagSmoothing(0);
+  }
+
+   // Background Squares
+  function bgSquares() {
+      const direction = 'right'; // 'right', 'left', 'up', 'down', or 'diagonal'
     const speed = 0.5;
     const borderColor = '#333';
     const squareSize = 40;
@@ -51,7 +63,6 @@ $(document).ready(function () {
       numSquaresX = Math.ceil(canvas.width / squareSize) + 1;
       numSquaresY = Math.ceil(canvas.height / squareSize) + 1;
     }
-
     function drawGrid() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -90,7 +101,6 @@ $(document).ready(function () {
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
-
     function updateAnimation() {
       // Only animate if visible
       if (!isVisible) {
@@ -135,30 +145,10 @@ $(document).ready(function () {
       window.removeEventListener('resize', resizeCanvas);
       canvas.remove();
     };
-  })();
-
-  // Scroll Smooth Lenis
-  (function () {
-    const lenis = new Lenis({
-      smooth: true,
-      autoRaf: false,
-      lerp: 0.1,
-      wheelMultiplier: 1,
-      touchMultiplier: 2,
-      infinite: false,
-    });
-
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000); // Convert time from seconds to milliseconds
-    });
-
-    // Disable lag smoothing in GSAP to prevent any delay in scroll animations
-    gsap.ticker.lagSmoothing(0);
-  })();
+  }
 
   // Background Silk
-  (function () {
+  function bgSilk () {
     const hexToNormalizedRGB = (hex) => {
       hex = hex.replace('#', '');
       return [
@@ -338,10 +328,10 @@ $(document).ready(function () {
 
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
-  })();
+  };
 
   // Scroll Cards
-  (function () {
+  function scrollPrjCards() {
     const cards = document.querySelectorAll('.homepage .projects .projects__list-card');
     const cardsImgs = document.querySelectorAll('.homepage .projects .projects__list-card img');
     const container = document.querySelector('.homepage .projects .projects__list');
@@ -440,10 +430,10 @@ $(document).ready(function () {
         }
       });
     };
-  })();
+  };
 
   // Marquee Skills
-  (function () {
+  function marqueeSkills() {
     const marquee = document.querySelector('.skills .previous');
     const marqueeNext = document.querySelector('.skills .next');
     const contentWidth = marquee.offsetWidth;
@@ -453,17 +443,27 @@ $(document).ready(function () {
       duration: 30,
       ease: 'linear',
       repeat: -1,
+            force3D: true
     });
     gsap.to(marqueeNext, {
       x: `${contentWidth / 2}px`,
       duration: 35,
       ease: 'linear',
-      repeat: 1,
+      repeat: -1,
+            force3D: true
     });
-  })();
+  };
 
-  // INIT
+
+  // Init
   function init() {
+     mobileDetect();
+     smoothLenis();
+     bgSquares();
+     bgSilk();
+     scrollPrjCards();
+    //  marqueeSkills();
+
     $('body')
       .imagesLoaded()
       .progress({ background: true }, function (instance, image) {})
@@ -482,9 +482,9 @@ $(document).ready(function () {
   init();
 
   // Global cleanup function for page unload
-  window.addEventListener('beforeunload', function () {
-    if (window.cleanupSquares) window.cleanupSquares();
-    if (window.cleanupSilk) window.cleanupSilk();
-    if (window.cleanupScrollCards) window.cleanupScrollCards();
-  });
+  // window.addEventListener('beforeunload', function () {
+  //   if (window.cleanupSquares) window.cleanupSquares();
+  //   if (window.cleanupSilk) window.cleanupSilk();
+  //   if (window.cleanupScrollCards) window.cleanupScrollCards();
+  // });
 });

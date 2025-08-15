@@ -4,6 +4,8 @@
   background-color: $black-cl;
   width: 100vw;
   overflow-x: hidden;
+  isolation: isolate;
+
   .container-fluid {
     .text {
       font-family: $ff-gly;
@@ -30,11 +32,13 @@
   .main-wrapper {
     position: relative;
     z-index: 2;
+    
     .hero {
       width: 100vw;
       height: 100vh;
       position: relative;
       z-index: 2;
+
       .content {
         @include mid();
         display: flex;
@@ -42,6 +46,7 @@
         gap: 1.5rem;
         z-index: 50;
         padding: 0 1rem;
+        
         &-line {
           display: flex;
           align-items: center;
@@ -49,12 +54,12 @@
           gap: 2rem;
           h1,
           span {
-            font-family: $ff-gly;
+          font-family: $ff-gly;
             font-size: var(--spc-fs);
             line-height: var(--spc-lh);
             font-weight: 400;
             color: $white-cl;
-            text-transform: uppercase;
+            // text-transform: uppercase;
             white-space: nowrap;
           }
 
@@ -121,7 +126,7 @@
             object-fit: cover;
           }
           .wrap {
-            width: calc(100vw - 50%);
+            width: calc(100vw - 49%);
             height: 100%;
             padding: 3rem 3rem 1rem 3rem;
             display: flex;
@@ -204,6 +209,13 @@
       flex-direction: column;
       gap: 2rem 0;
 
+      .track{
+         --speed: 20s;           
+        overflow: hidden;
+        white-space: nowrap;
+        box-sizing: border-box;
+      }
+
       .marquee__list {
         display: flex;
         align-items: center;
@@ -214,6 +226,18 @@
         font-weight: 400;
         color: $white-cl;
         font-family: $ff-gly;
+        animation: all .3s;
+        &.previous{
+           --speed: 40s;    
+           animation: scrollPrevious var(--speed) linear infinite;
+        }
+        &.next{
+           --speed: 50s;    
+           animation: scrollNext var(--speed) linear infinite;
+        }
+        &:hover{
+          animation-play-state: paused;
+        }
         &-item {
           display: inline-block;
           white-space: nowrap;
@@ -227,15 +251,12 @@
             font-family: $ff-gly;
           }
         }
-
-        @keyframes marquee {
-          from {
-            transform: translateX(100%);
-          }
-          to {
-            transform: translateX(-100%);
-          }
-        }
+      }
+      @keyframes scrollPrevious{
+       to { transform: translateX(-45%); }
+      }
+      @keyframes scrollNext{
+       to { transform: translateX(45%); }
       }
     }
   }
