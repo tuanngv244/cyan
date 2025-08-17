@@ -62,13 +62,15 @@
     --spc-fs: 5rem;
     --spc-lh: 6rem;
   }
+
   @media (max-width: 992px) {
     --spc-fs: 4rem;
     --spc-lh: 5rem;
   }
+
   @media (max-width: 767px) {
-    --spc-fs: 2rem;
-    --spc-lh: 3rem;
+    --spc-fs: 3.5rem;
+    --spc-lh: 4.5rem;
 
     --body15-fs: 1.125rem;
     --body15-lh: 1.5rem;
@@ -126,8 +128,18 @@ $sm-min: 992px;
 $md-min: 1200px;
 $lg-min: 1600px;
 
-$xxs-max: ($xxs-min - 1); // Small Mobile
-$xs-max: ($xs-min - 1); // Mobile
-$sm-max: ($sm-min - 1); // Tablet
-$md-max: ($md-min - 1); // Desktop
-$lg-max: ($lg-min - 1); // Large Desktop
+$xxs-max: (
+  $xxs-min - 1
+); // Small Mobile
+$xs-max: (
+  $xs-min - 1
+); // Mobile
+$sm-max: (
+  $sm-min - 1
+); // Tablet
+$md-max: (
+  $md-min - 1
+); // Desktop
+$lg-max: (
+  $lg-min - 1
+); // Large Desktop

@@ -27,7 +27,11 @@ $(document).ready(function () {
 
   // Scroll Smooth Lenis
   function smoothLenis(){
-    const lenis = new Lenis();
+    const lenis = new Lenis({
+      smooth: true,
+      autoRaf: false,
+      lerp:0.1
+    });
 
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time) => {
@@ -241,7 +245,7 @@ $(document).ready(function () {
       camera.position.z = 1;
 
       const renderer = new THREE.WebGLRenderer({
-        antialias: true,
+        antialias: false,
         powerPreference: 'high-performance',
       });
       renderer.setSize(window.innerWidth, window.innerHeight);
@@ -333,7 +337,6 @@ $(document).ready(function () {
   // Scroll Cards
   function scrollPrjCards() {
     const cards = document.querySelectorAll('.homepage .projects .projects__list-card');
-    const cardsImgs = document.querySelectorAll('.homepage .projects .projects__list-card img');
     const container = document.querySelector('.homepage .projects .projects__list');
     const horizontal = document.getElementById('prj-list-track');
 
@@ -348,18 +351,28 @@ $(document).ready(function () {
       return;
     }
 
+
+    // Add performance hints
+    horizontal.style.willChange = 'transform';
+
+
     // Create the horizontal scroll timeline
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: container,
         start: 'top top',
-        end: () => `+=${scrollDistance + 1000}`,
+        end: () => `+=${scrollDistance}`,
         scrub: 1,
         pin: true,
         anticipatePin: 1,
         invalidateOnRefresh: true,
+        markers: true, // Remove in production
         onUpdate: (self) => {
           const progress = self.progress;
+          // Optional: Log scroll progress
+          if (Math.round(progress * 100) % 20 === 0) {
+            console.log('Scroll progress:', Math.round(progress * 100) + '%');
+          }
         },
       },
     });
@@ -369,10 +382,13 @@ $(document).ready(function () {
       x: -scrollDistance,
       ease: 'none',
       duration: 1,
-    });
+      force3D: true,
+    }, 0);
 
-    // draw shapes
-    tl.fromTo(
+    // Image parallax animations
+
+    // Card scale and reveal animation with better effects
+     tl.fromTo(
       cards,
       {
         scale: 0.9,
@@ -383,6 +399,7 @@ $(document).ready(function () {
         scale: 1,
         ease: 'none',
         duration: 0.3,
+        force3D: true,
         scrollTrigger: {
           trigger: container,
           start: 'start start+=30%',
@@ -392,23 +409,14 @@ $(document).ready(function () {
         },
       },
     );
-    // tl.fromTo(
-    //   cardsImgs,
-    //   {
-    //     scale: 0.9,
-    //   },
-    //   {
-    //     scale: 1,
-    //     ease: "none",
-    //     scrollTrigger: {
-    //       trigger: container,
-    //       start: "start start+=30%",
-    //       end: "end end",
-    //       scrub: 1,
-    //       invalidateOnRefresh: true,
-    //     },
-    //   }
-    // );
+
+    // Add container-level effects
+    // tl.to(container, {
+    //   filter: 'hue-rotate(5deg) saturate(1.05)',
+    //   duration: 1,
+    //   ease: 'none',
+    // }, 0);
+
 
     // Optimized resize handler
     let resizeTimeout;
@@ -424,6 +432,10 @@ $(document).ready(function () {
     // Cleanup function
     window.cleanupScrollCards = function () {
       window.removeEventListener('resize', handleResize);
+      horizontal.style.willChange = 'auto';
+      cardsImgs.forEach(img => {
+        img.style.willChange = 'auto';
+      });
       ScrollTrigger.getAll().forEach((trigger) => {
         if (trigger.trigger === container) {
           trigger.kill();
@@ -432,37 +444,148 @@ $(document).ready(function () {
     };
   };
 
-  // Marquee Skills
-  function marqueeSkills() {
-    const marquee = document.querySelector('.skills .previous');
-    const marqueeNext = document.querySelector('.skills .next');
-    const contentWidth = marquee.offsetWidth;
+  // Projects animation
+  function prjAnimation(){
+      const subTitles = document.querySelectorAll('.homepage .projects .projects__list-card .content .sub-title');
+      const titles = document.querySelectorAll('.homepage .projects .projects__list-card .content .title');
+      const descs = document.querySelectorAll('.homepage .projects .projects__list-card .content .desc');
+      const cards = document.querySelectorAll('.homepage .projects .projects__list-card');
 
-    gsap.to(marquee, {
-      x: `-${contentWidth / 2}px`,
-      duration: 30,
-      ease: 'linear',
-      repeat: -1,
-            force3D: true
-    });
-    gsap.to(marqueeNext, {
-      x: `${contentWidth / 2}px`,
-      duration: 35,
-      ease: 'linear',
-      repeat: -1,
-            force3D: true
-    });
-  };
+      if (!titles.length || !cards.length) {
+        console.warn('Project animation: No titles or cards found');
+        return;
+      }
+
+      // Animate each title individually
+      titles.forEach((title, index) => {
+        const card = cards[index];
+        if (!card) return;
 
 
-  // Init
-  function init() {
-     mobileDetect();
+        // Split text for this specific title
+        const splitTitle = new SplitText(title, {
+          // type: "lines, words",
+          // linesClass: "line-overflow"
+            type: "lines, words",
+            mask: "lines",
+            autoSplit: true,
+        });
+
+        // Set initial state
+        gsap.set(splitTitle.words, {
+          y: 100,
+          opacity: 0
+        });
+
+        // Create ScrollTrigger for this specific card
+        ScrollTrigger.create({
+          trigger: card,
+          start: "left 70%",
+          end: "right 30%",
+          horizontal: true,  
+          // scrub: 1,
+          markers:true,
+          invalidateOnRefresh: true,
+          immediateRender:true,
+
+          onEnter: () => {
+            gsap.to(splitTitle.words, {
+              y: 0,
+              opacity: 1,
+              duration: 0.8,
+              stagger: 0.03,
+              ease: "power2.out",
+            });
+          },
+          onLeave: () => {
+            gsap.to(splitTitle.words, {
+              y: -50,
+              opacity: 0,
+              duration: 0.5,
+              stagger: 0.02,
+              ease: "power2.in"
+            });
+          },
+          onEnterBack: () => {
+            gsap.to(splitTitle.words, {
+              y: 0,
+              opacity: 1,
+              duration: 0.6,
+              stagger: 0.03,
+              ease: "power2.out"
+            });
+          }
+        });
+      });
+
+      // // Animate subtitles and descriptions
+      // subTitles.forEach((subTitle, index) => {
+      //   const card = cards[index];
+      //   if (!card) return;
+
+      //   ScrollTrigger.create({
+      //     trigger: card,
+      //     start: "left 70%",
+      //     end: "right 30%",
+      //     horizontal: true,
+      //     scrub: false,
+      //     invalidateOnRefresh: true,
+      //     onEnter: () => {
+      //       gsap.from(subTitle, {
+      //         y: 30,
+      //         opacity: 0,
+      //         duration: 0.6,
+      //         delay: 0.2,
+      //         ease: "power2.out"
+      //       });
+      //     }
+      //   });
+      // });
+
+      // descs.forEach((desc, index) => {
+      //   const card = cards[index];
+      //   if (!card) return;
+
+      //   ScrollTrigger.create({
+      //     trigger: card,
+      //     start: "left 60%",
+      //     end: "right 40%",
+      //     horizontal: true,
+      //     scrub: false,
+      //     invalidateOnRefresh: true,
+      //     onEnter: () => {
+      //       gsap.from(desc, {
+      //         y: 20,
+      //         opacity: 0,
+      //         duration: 0.8,
+      //         delay: 0.4,
+      //         ease: "power2.out"
+      //       });
+      //     }
+      //   });
+      // });
+
+      // Cleanup function
+      window.cleanupPrjAnimation = function() {
+        ScrollTrigger.getAll().forEach(trigger => {
+          if (trigger.trigger && cards.includes(trigger.trigger)) {
+            trigger.kill();
+          }
+        });
+      };
+  }
+
+
+
+    mobileDetect();
      smoothLenis();
      bgSquares();
      bgSilk();
      scrollPrjCards();
-    //  marqueeSkills();
+     prjAnimation()
+
+  // Init
+  function init() {
 
     $('body')
       .imagesLoaded()
@@ -482,9 +605,13 @@ $(document).ready(function () {
   init();
 
   // Global cleanup function for page unload
-  // window.addEventListener('beforeunload', function () {
-  //   if (window.cleanupSquares) window.cleanupSquares();
-  //   if (window.cleanupSilk) window.cleanupSilk();
-  //   if (window.cleanupScrollCards) window.cleanupScrollCards();
-  // });
+  window.addEventListener('beforeunload', function () {
+    if (window.cleanupSquares) window.cleanupSquares();
+    if (window.cleanupSilk) window.cleanupSilk();
+    if (window.cleanupScrollCards) window.cleanupScrollCards();
+    if (window.cleanupPrjAnimation) window.cleanupPrjAnimation();
+  });
 });
+
+
+

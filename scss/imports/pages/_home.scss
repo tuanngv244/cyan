@@ -22,6 +22,7 @@
     width: 100vw;
     height: 100vh;
     z-index: 1;
+
     canvas {
       width: 100% !important;
       height: 100% !important;
@@ -32,7 +33,7 @@
   .main-wrapper {
     position: relative;
     z-index: 2;
-    
+
     .hero {
       width: 100vw;
       height: 100vh;
@@ -46,15 +47,16 @@
         gap: 1.5rem;
         z-index: 50;
         padding: 0 1rem;
-        
+
         &-line {
           display: flex;
           align-items: center;
           justify-content: space-between;
           gap: 2rem;
+
           h1,
           span {
-          font-family: $ff-gly;
+            font-family: $ff-gly;
             font-size: var(--spc-fs);
             line-height: var(--spc-lh);
             font-weight: 400;
@@ -74,6 +76,7 @@
           .silk {
             width: 500px;
             height: 120px;
+
             canvas {
               width: 100% !important;
               height: 100% !important;
@@ -82,12 +85,14 @@
           }
         }
       }
+
       .explore {
         @include mid();
         top: initial !important;
-        bottom: 2rem;
+        bottom: 1rem;
+
         p {
-          font-family: $ff-gly;
+          font-family: $ff-apt-r;
           font-size: var(--body12-fs);
           line-height: var(--body12-lh);
           font-weight: 400;
@@ -110,30 +115,42 @@
           margin: 0;
           display: flex;
           flex-direction: row;
+          position: relative;
+
           &:nth-child(odd) {
             .wrap {
               background-color: $yellow-light-cl;
             }
           }
+
           &:nth-child(even) {
             .wrap {
               background-color: $white-cl;
             }
           }
+
           .bg {
-            width: calc(100vw - 50%);
-            height: 100%;
-            object-fit: cover;
+            overflow: hidden;
+            width: 100vw;
+
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
           }
+
           .wrap {
-            width: calc(100vw - 49%);
-            height: 100%;
+            @include mid();
+            width: calc(100vw - 60%);
+            height: calc(100vh - 6rem);
             padding: 3rem 3rem 1rem 3rem;
+            border-radius: 2rem;
             display: flex;
             flex-direction: column;
 
             .content {
-              padding-left: 8rem;
+              padding-left: 2rem;
               margin-top: 2rem;
             }
 
@@ -144,6 +161,7 @@
               color: $black-cl;
               font-family: $ff-gly;
             }
+
             .sub-title {
               font-size: var(--body15-fs);
               line-height: var(--body15-lh);
@@ -151,6 +169,7 @@
               color: $black-cl;
               font-family: $ff-gly;
             }
+
             .title {
               font-size: var(--h2-fs);
               line-height: var(--h2-lh);
@@ -161,6 +180,7 @@
               text-transform: uppercase;
               letter-spacing: 1.2;
             }
+
             .desc {
               max-width: 1000px;
               font-size: var(--body10-fs);
@@ -169,22 +189,26 @@
               color: $black-cl;
               font-family: $ff-apt-r;
             }
+
             .view {
               margin-top: 2rem;
             }
           }
+
           .galleries {
             margin-top: auto;
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             gap: 0.5rem;
             grid-template-rows: 20px;
+
             &__item {
               border: 1px dashed $black-cl;
             }
           }
         }
       }
+
       &__track {
         display: flex;
         flex-direction: row;
@@ -209,8 +233,8 @@
       flex-direction: column;
       gap: 2rem 0;
 
-      .track{
-         --speed: 20s;           
+      .track {
+        --speed: 20s;
         overflow: hidden;
         white-space: nowrap;
         box-sizing: border-box;
@@ -227,21 +251,26 @@
         color: $white-cl;
         font-family: $ff-gly;
         animation: all .3s;
-        &.previous{
-           --speed: 40s;    
-           animation: scrollPrevious var(--speed) linear infinite;
+
+        &.previous {
+          --speed: 40s;
+          animation: scrollPrevious var(--speed) linear infinite;
         }
-        &.next{
-           --speed: 50s;    
-           animation: scrollNext var(--speed) linear infinite;
+
+        &.next {
+          --speed: 50s;
+          animation: scrollNext var(--speed) linear infinite;
         }
-        &:hover{
+
+        &:hover {
           animation-play-state: paused;
         }
+
         &-item {
           display: inline-block;
           white-space: nowrap;
           will-change: transform;
+
           // animation: marquee 10s linear infinite;
           p {
             font-size: var(--h1-fs);
@@ -252,11 +281,17 @@
           }
         }
       }
-      @keyframes scrollPrevious{
-       to { transform: translateX(-45%); }
+
+      @keyframes scrollPrevious {
+        to {
+          transform: translateX(-45%);
+        }
       }
-      @keyframes scrollNext{
-       to { transform: translateX(45%); }
+
+      @keyframes scrollNext {
+        to {
+          transform: translateX(45%);
+        }
       }
     }
   }
@@ -268,20 +303,24 @@
           &-card {
             .wrap {
               padding: 1.5rem 1.5rem 1rem 1.5rem;
+
               .number {
                 font-size: 5rem;
                 line-height: 6rem;
               }
+
               .content {
                 margin: 0.5rem;
                 padding-left: 5rem;
-                .sub-title {
-                }
+
+                .sub-title {}
+
                 .title {
                   font-size: 3rem;
                   line-height: 4rem;
                   margin: 0.5rem 0 1.25rem 0;
                 }
+
                 .desc {
                   font-size: 1rem;
                   line-height: 1.5rem;
@@ -300,6 +339,7 @@
         .content {
           &-line {
             flex-direction: column;
+
             .silk {
               width: 300px;
               height: 100px;
@@ -314,19 +354,79 @@
     .main-wrapper {
       .hero {
         .content {
+          gap: 0.75rem;
+          min-width: 85%;
+
           &-line {
             flex-direction: column;
+            gap: 0.75rem;
+
             &.middle {
               flex-direction: column-reverse;
             }
+
             .silk {
               width: 300px;
               height: 100px;
             }
           }
         }
+
+        .explore {
+          bottom: 1rem;
+
+          p {
+            white-space: nowrap;
+            font-size: var(--body09-fs);
+            line-height: var(--body09-lh);
+          }
+        }
       }
+
       .projects {
+        &__list {
+          &-card {
+            .wrap {
+              width: calc(100% - 2rem);
+              height: calc(100vh - 6rem);
+              @include mid();
+
+              .number {
+                font-size: 2.5rem;
+                line-height: 3rem;
+              }
+
+              .content {
+                padding-left: 1rem;
+
+
+                .title {
+                  font-size: 2.5rem;
+                  line-height: 3rem;
+                }
+              }
+
+
+            }
+          }
+        }
+      }
+
+      .skills {
+        height: 60vh;
+        gap: 0;
+
+        .track {
+
+          .marquee__list {
+            &-item {
+              p {
+                font-size: var(--h3-fs);
+                line-height: var(--h3-lh);
+              }
+            }
+          }
+        }
       }
     }
   }
