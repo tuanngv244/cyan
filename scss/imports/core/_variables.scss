@@ -2,6 +2,9 @@
   --spc-fs: 10rem;
   --spc-lh: 11rem;
 
+  --big-fs: 8rem;
+  --big-lh: 9rem;
+
   // fontsize text
   --h1-fs: 5rem;
   --h1-lh: 6rem;
@@ -51,6 +54,9 @@
   @media (max-width: 1680px) {
     --spc-fs: 6rem;
     --spc-lh: 7rem;
+
+    --big-fs: 7rem;
+    --big-lh: 8rem;
   }
 
   @media (max-width: 1440px) {
@@ -61,16 +67,24 @@
   @media (max-width: 1024px) {
     --spc-fs: 5rem;
     --spc-lh: 6rem;
+    --big-fs: 6rem;
+    --big-lh: 7rem;
   }
 
   @media (max-width: 992px) {
     --spc-fs: 4rem;
     --spc-lh: 5rem;
+
+    --big-fs: 3.5rem;
+    --big-lh: 4.5rem;
   }
 
   @media (max-width: 767px) {
     --spc-fs: 3.5rem;
     --spc-lh: 4.5rem;
+
+    --big-fs: 3rem;
+    --big-lh: 4rem;
 
     --body15-fs: 1.125rem;
     --body15-lh: 1.5rem;
@@ -86,14 +100,18 @@ $ff-gly: 'Gly';
 $main-cl: #0b5f91;
 
 $white-cl: #ffffff;
-$yellow-cl: #ffce02;
 $yellow-light-cl: #fdf4d9;
-$blue-light-cl: #7ad4e4;
 $gray-cl: #f4f4f4;
 $black-cl: #000000;
 $gray-text-cl: #f3efef;
 $lightgray-cl: #c4c4c4;
 $line-cl: #e5e5e5;
+
+$purple-cl: #E1DBFD;
+$orange-cl: #FF764A;
+$yellow-cl: #FFB84F;
+$light-blue-cl: #90C3CD;
+$green-cl: #47B172;
 
 // level index
 $zIndex-lv0: -1;

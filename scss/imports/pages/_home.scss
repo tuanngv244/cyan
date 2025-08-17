@@ -54,8 +54,7 @@
           justify-content: space-between;
           gap: 2rem;
 
-          h1,
-          span {
+          h1 {
             font-family: $ff-gly;
             font-size: var(--spc-fs);
             line-height: var(--spc-lh);
@@ -117,15 +116,33 @@
           flex-direction: row;
           position: relative;
 
-          &:nth-child(odd) {
+          &:nth-of-type(2) {
             .wrap {
-              background-color: $yellow-light-cl;
+              background-color: $purple-cl;
             }
           }
 
-          &:nth-child(even) {
+          &:nth-of-type(3) {
             .wrap {
-              background-color: $white-cl;
+              background-color: $orange-cl;
+            }
+          }
+
+          &:nth-of-type(4) {
+            .wrap {
+              background-color: $yellow-cl;
+            }
+          }
+
+          &:nth-of-type(5) {
+            .wrap {
+              background-color: $light-blue-cl;
+            }
+          }
+
+          &:nth-of-type(6) {
+            .wrap {
+              background-color: $green-cl;
             }
           }
 
@@ -144,8 +161,8 @@
             @include mid();
             width: calc(100vw - 60%);
             height: calc(100vh - 6rem);
+            aspect-ratio: 1/1;
             padding: 3rem 3rem 1rem 3rem;
-            border-radius: 2rem;
             display: flex;
             flex-direction: column;
 
@@ -217,13 +234,20 @@
         padding-left: 2rem;
         will-change: transform;
         width: max-content;
+
+        .line {
+          width: 100%;
+          @include mid();
+          left: calc(50% + 50vw);
+
+          .line__path {}
+        }
       }
     }
 
     .skills {
       width: 100%;
       height: 100vh;
-      overflow: hidden;
       white-space: nowrap;
       padding: 1rem 0;
       position: relative;
@@ -235,7 +259,6 @@
 
       .track {
         --speed: 20s;
-        overflow: hidden;
         white-space: nowrap;
         box-sizing: border-box;
       }
@@ -251,6 +274,7 @@
         color: $white-cl;
         font-family: $ff-gly;
         animation: all .3s;
+        position: relative;
 
         &.previous {
           --speed: 40s;
@@ -273,11 +297,12 @@
 
           // animation: marquee 10s linear infinite;
           p {
-            font-size: var(--h1-fs);
-            line-height: var(--h1-lh);
+            font-size: var(--big-fs);
+            line-height: var(--big-lh);
             font-weight: 400;
             color: $white-cl;
             font-family: $ff-gly;
+            @include text-linear($purple-cl, $orange-cl, $yellow-cl, $light-blue-cl, $green-cl);
           }
         }
       }
@@ -303,6 +328,7 @@
           &-card {
             .wrap {
               padding: 1.5rem 1.5rem 1rem 1.5rem;
+              width: calc(100vw - 40%);
 
               .number {
                 font-size: 5rem;

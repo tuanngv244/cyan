@@ -1,4 +1,5 @@
 @use 'common' as *;
+
 // css button, title, icon, elements...
 img {
   max-width: 100%;
@@ -10,23 +11,28 @@ img {
   user-select: none;
   display: block;
   outline: 0;
+
   &.--center {
     margin: 0 auto;
     display: block;
   }
 }
+
 a {
   text-decoration: none;
   outline: 0;
   color: $black-cl;
+
   &.link {
     color: $main-cl;
     @include transition($t);
+
     &:hover {
       opacity: 0.6;
     }
   }
 }
+
 strong {
   font-family: gb;
 }
@@ -36,6 +42,7 @@ sup {
   font-size: var(--body14-fs);
   line-height: var(--body14-lh);
 }
+
 sub {
   vertical-align: sub;
   font-size: var(--body14-fs);
@@ -46,15 +53,19 @@ sub {
 .--white-cl {
   color: $white-cl;
 }
+
 .--main-cl {
   color: $main-cl;
 }
+
 .--gray-cl {
   color: $black-cl;
 }
+
 .arrowright {
   width: 24px;
 }
+
 //================================== HEADING ===========================//
 .subheading {
   font-size: var(--h3-fs);
@@ -62,6 +73,7 @@ sub {
   text-transform: uppercase;
   font-family: gl;
   margin-bottom: 8px;
+
   &.--h2 {
     font-size: var(--h2-fs);
     line-height: var(--h2-lh);
@@ -74,39 +86,49 @@ sub {
   text-transform: uppercase;
   letter-spacing: -0.4px;
   text-align: center;
+
   &.--h0 {
     font-size: var(--h0-fs);
     line-height: var(--h0-lh);
   }
+
   &.--h1 {
     font-size: var(--h1-fs);
     line-height: var(--h1-lh);
   }
+
   &.--h2 {
     font-size: var(--h2-fs);
     line-height: var(--h2-lh);
   }
+
   &.--h3 {
     font-size: var(--h3-fs);
     line-height: var(--h3-lh);
   }
+
   &.--h4 {
     font-size: var(--h4-fs);
     line-height: var(--h4-lh);
   }
+
   &.--h5 {
     font-size: var(--h5-fs);
     line-height: var(--h5-lh);
   }
+
   &.--lowercase {
     text-transform: none;
   }
+
   &.--align-left {
     text-align: left;
   }
+
   &.--font-body {
     font-family: $font-main;
   }
+
   &.--font-body-b {
     font-family: gb;
   }
@@ -114,26 +136,32 @@ sub {
 
 .bodytext {
   font-family: $font-main;
+
   &.--body-18 {
     font-size: var(--body18-fs);
     line-height: var(--body18-lh);
   }
+
   &.--body-15 {
     font-size: var(--body15-fs);
     line-height: var(--body15-lh);
   }
+
   &.--body-14 {
     font-size: var(--body14-fs);
     line-height: var(--body14-lh);
   }
+
   &.--body-13 {
     font-size: var(--body13-fs);
     line-height: var(--body13-lh);
   }
+
   &.--body-12 {
     font-size: var(--body12-fs);
     line-height: var(--body12-lh);
   }
+
   &.--body-10 {
     font-size: var(--body10-fs);
     line-height: var(--body10-lh);
@@ -149,12 +177,14 @@ sub {
   background-color: $white-cl;
   @include mid(true);
   @include transition(0.5s);
+
   span {
     color: $black-cl;
     font-family: $ff-apt-r;
     display: inline-flex;
     align-items: center;
     @include transition(0.3s);
+
     &::before {
       content: '';
       @include size(11px, 11px);
@@ -175,10 +205,12 @@ sub {
   &:hover {
     background-color: $main-cl;
     @include transition(0.5s);
+
     span {
       color: $white-cl;
       transform: translateX(-20px);
       @include transition(0.3s);
+
       &:before {
         background-color: $white-cl;
         transform: translateX(130px);
@@ -191,6 +223,7 @@ sub {
     &:hover {
       span {
         transform: translateX(-20px);
+
         &:before {
           transform: translateX(165px);
         }
@@ -202,6 +235,7 @@ sub {
     &:hover {
       span {
         transform: translateX(-25px);
+
         &:before {
           transform: translateX(170px);
         }
@@ -221,16 +255,19 @@ sub {
 
 .groupsocial {
   display: flex;
+
   .iconsocial {
     margin: 0 8px;
   }
 }
+
 .iconsocial {
   @include size(60px);
   border-radius: 50%;
   @include mid(true);
   position: relative;
   flex-shrink: 0;
+
   &:after {
     content: '';
     @include size(100%);
@@ -244,26 +281,32 @@ sub {
     z-index: -1;
     @include transition($t);
   }
+
   img {
     width: 30px;
     display: block;
     flex-basis: 0;
   }
+
   &:hover {
     &:after {
       border: 1px solid $white-cl;
     }
   }
+
   &.--small {
     @include size(40px);
+
     img {
       width: 20px;
       height: 18px;
       object-fit: cover;
     }
   }
+
   @include xs {
     @include size(50px);
+
     img {
       width: calc(100% - 25px);
     }
@@ -278,13 +321,16 @@ sub {
   border-radius: 50%;
   cursor: pointer;
   left: 0;
+
   svg {
     width: 12px;
     @include mid;
+
     path {
       fill: $black-cl;
     }
   }
+
   &.previous {
     right: 0;
   }
@@ -301,6 +347,7 @@ sub {
   position: relative;
   border: 1px solid $black-cl;
   transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.45s;
+
   span {
     font-size: var(--body09-fs);
     line-height: var(--body09-lh);
@@ -311,6 +358,7 @@ sub {
     opacity: 0;
     transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.45s;
   }
+
   svg {
     position: absolute;
     top: 50%;
@@ -321,16 +369,29 @@ sub {
     fill: $black-cl;
     transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.45s;
   }
+
   &:hover {
     width: 7rem;
     transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.45s;
+
     span {
       opacity: 1;
       transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.45s;
     }
+
     svg {
       right: 1rem;
       transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.45s;
     }
   }
+}
+
+.bg-purple {
+  background-color: $purple-cl;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+}
+
+.text-linear {
+  @include text-linear($purple-cl, $orange-cl, $yellow-cl, $light-blue-cl, $green-cl);
 }
