@@ -1,4 +1,5 @@
 @use 'common' as *;
+
 .header {
   @include transition($t);
   position: fixed;
@@ -16,15 +17,20 @@
     padding-bottom: 1.5rem;
 
     .branch {
-      a {
+      display: flex;
+      align-items: center;
+
+
+      &__title {
         font-size: var(--body15-fs);
         line-height: var(--body15-lh);
-        color: $gray-text-cl;
+        color: $black-cl;
         // mix-blend-mode: difference;
         font-family: $ff-gly;
         font-weight: 400;
         mix-blend-mode: difference;
       }
+
       &.is-active {
         a {
           color: $black-cl;
@@ -32,11 +38,12 @@
         }
       }
     }
+
     .nav {
       .contact {
         font-size: var(--body15-fs);
         line-height: var(--body15-lh);
-        color: $gray-text-cl;
+        color: $black-cl;
         // mix-blend-mode: difference;
         font-family: $ff-gly;
         font-weight: 400;
@@ -50,6 +57,7 @@
       .hamburger {
         margin: 0 0 0 20px;
       }
+
       .language {
         display: none;
       }

@@ -1,7 +1,7 @@
 @use '../core/common' as *;
 
 .homepage {
-  background-color: $black-cl;
+  background-color: #f9f4eb;
   width: 100vw;
   overflow-x: hidden;
   isolation: isolate;
@@ -44,37 +44,56 @@
         @include mid();
         display: flex;
         flex-direction: column;
+        align-items: center;
         gap: 1.5rem;
         z-index: 50;
         padding: 0 1rem;
+        top: 35%;
 
-        &-line {
+        &__line {
           display: flex;
           align-items: center;
-          justify-content: space-between;
-          gap: 2rem;
+          justify-content: center;
+          gap: 0 1rem;
+
+
+          &.--bottom {
+            max-width: 1000px;
+          }
+
 
           h1 {
-            font-family: $ff-gly;
+            font-family: $ff-pop-bold;
             font-size: var(--spc-fs);
             line-height: var(--spc-lh);
-            font-weight: 400;
-            color: $white-cl;
-            // text-transform: uppercase;
+            font-weight: 300;
+            color: $black-cl;
+            text-transform: uppercase;
+            text-align: center;
             white-space: nowrap;
+            flex: 1;
           }
 
           .intro {
-            font-family: $ff-gly;
-            font-size: var(--body09-fs);
-            line-height: var(--body09-lh);
-            font-weight: 400;
-            color: $white-cl;
+            max-width: 1000px;
+
+            p {
+              font-family: $ff-pop-regular;
+              font-size: var(--body09-fs);
+              line-height: var(--body10-lh);
+              font-weight: 400;
+              color: $black-cl;
+              flex: 1;
+              font-style: italic;
+            }
           }
 
           .silk {
-            width: 500px;
+            width: 400px;
+            min-width: 400px;
             height: 120px;
+            border-radius: 1rem;
+            overflow: hidden;
 
             canvas {
               width: 100% !important;
@@ -88,7 +107,89 @@
       .explore {
         @include mid();
         top: initial !important;
-        bottom: 1rem;
+        bottom: 3rem;
+        transform: translate(-50%, 0);
+
+        .cards {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0 3.5rem;
+
+          @media (max-width: 1800px) {
+            gap: 0 2rem;
+          }
+
+
+
+          &__item {
+            width: 250px;
+            height: 300px;
+            position: relative;
+
+            @media (max-width: 1800px) {
+              width: 150px;
+              height: 200px;
+            }
+
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            p {
+              font-family: $ff-pop-medium;
+              font-size: var(--body09-fs);
+              line-height: var(--body09-lh);
+              font-weight: 500;
+              color: $black-cl;
+            }
+
+            &.--1 {
+              background-color: $purple-cl;
+              transform: rotate(-16deg);
+              // animation: emerge 1.2s ease-in-out infinite alternate;
+            }
+
+            &.--2 {
+              background-color: $orange-cl;
+              transform: rotate(-8deg);
+              // animation: emerge 1.25s ease-in-out infinite alternate;
+            }
+
+            &.--3 {
+              background-color: $yellow-cl;
+              transform: rotate(0deg);
+              // animation: emerge 1.3s ease-in-out infinite alternate;
+            }
+
+            &.--4 {
+              background-color: $light-blue-cl;
+              transform: rotate(8deg);
+              // animation: emerge 1.35s ease-in-out infinite alternate;
+            }
+
+            &.--5 {
+              background-color: $green-cl;
+              transform: rotate(16deg);
+              // animation: emerge 1.4s ease-in-out infinite alternate;
+            }
+
+            @keyframes emerge {
+              0% {
+                transform: translateY(-10px);
+              }
+
+              50% {
+                transform: translateY(0px);
+              }
+
+              100% {
+                transform: translateY(10px);
+              }
+            }
+          }
+        }
 
         p {
           font-family: $ff-apt-r;
@@ -103,7 +204,6 @@
     .projects {
       &__list {
         height: 100vh;
-        overflow: hidden;
         position: relative;
 
         &-card {
@@ -115,6 +215,7 @@
           display: flex;
           flex-direction: row;
           position: relative;
+
 
           &:nth-of-type(2) {
             .wrap {
@@ -146,34 +247,49 @@
             }
           }
 
-          .bg {
+
+
+          .img {
+            @include mid();
+            left: 40%;
             overflow: hidden;
-            width: 100vw;
+            width: calc(100vw - 65%);
+            height: calc(100vh - 12rem);
+
+            &:hover {
+              img {
+                transform: scale(1.05);
+                transition: all 0.3s ease-in-out;
+              }
+            }
 
             img {
+              object-fit: cover;
               width: 100%;
               height: 100%;
-              object-fit: cover;
+              transition: all 0.3s ease-in-out;
             }
           }
 
           .wrap {
             @include mid();
-            width: calc(100vw - 60%);
-            height: calc(100vh - 6rem);
+            left: 55%;
+            width: calc(100vw - 65%);
+            height: calc(100vh - 8rem);
             aspect-ratio: 1/1;
             padding: 3rem 3rem 1rem 3rem;
             display: flex;
             flex-direction: column;
 
+
             .content {
               padding-left: 2rem;
-              margin-top: 2rem;
+              margin-top: 0.5rem;
             }
 
             .number {
-              font-size: 6rem;
-              line-height: 7rem;
+              font-size: 4rem;
+              line-height: 5rem;
               font-weight: 300;
               color: $black-cl;
               font-family: $ff-gly;
@@ -204,7 +320,7 @@
               line-height: var(--body12-lh);
               font-weight: 400;
               color: $black-cl;
-              font-family: $ff-apt-r;
+              font-family: $ff-pop-regular;
             }
 
             .view {
@@ -238,9 +354,26 @@
         .line {
           width: 100%;
           @include mid();
-          left: calc(50% + 50vw);
+          padding: 0 50vw;
 
-          .line__path {}
+          &__wrap {
+            position: relative;
+
+            svg {
+              width: 100%;
+              @include mid();
+              z-index: 2;
+
+              &:nth-of-type(5) {
+                z-index: 1;
+              }
+            }
+
+            .line__path {
+              width: 100%;
+            }
+          }
+
         }
       }
     }
@@ -271,7 +404,8 @@
         font-size: var(--h1-fs);
         line-height: var(--h1-lh);
         font-weight: 400;
-        color: $white-cl;
+        color: $black-cl;
+
         font-family: $ff-gly;
         animation: all .3s;
         position: relative;
@@ -297,12 +431,14 @@
 
           // animation: marquee 10s linear infinite;
           p {
+            padding: 0.25rem 1rem;
             font-size: var(--big-fs);
             line-height: var(--big-lh);
-            font-weight: 400;
-            color: $white-cl;
-            font-family: $ff-gly;
-            @include text-linear($purple-cl, $orange-cl, $yellow-cl, $light-blue-cl, $green-cl);
+            font-weight: 700;
+            color: $black-cl;
+            font-family: $ff-pop-bold;
+            text-transform: uppercase;
+            // @include text-linear($purple-cl, $orange-cl, $yellow-cl, $light-blue-cl, $green-cl);
           }
         }
       }
@@ -363,10 +499,11 @@
     .main-wrapper {
       .hero {
         .content {
-          &-line {
+          &__line {
             flex-direction: column;
 
             .silk {
+              border-radius: 2rem;
               width: 300px;
               height: 100px;
             }
@@ -382,18 +519,27 @@
         .content {
           gap: 0.75rem;
           min-width: 85%;
+          top: 43%;
+          gap: 0;
 
-          &-line {
+          &__line {
             flex-direction: column;
             gap: 0.75rem;
+            text-align: center;
+
+            h1 {
+              white-space: wrap;
+            }
 
             &.middle {
               flex-direction: column-reverse;
             }
 
             .silk {
-              width: 300px;
+              width: calc(100% - 1rem);
               height: 100px;
+              min-width: calc(100% - 1rem);
+              margin-top: 1rem;
             }
           }
         }
@@ -401,10 +547,18 @@
         .explore {
           bottom: 1rem;
 
-          p {
-            white-space: nowrap;
-            font-size: var(--body09-fs);
-            line-height: var(--body09-lh);
+          .cards {
+            gap: 0 0.5rem;
+
+            &__item {
+              width: 80px;
+              height: 130px;
+
+              p {
+                font-size: var(--body08-fs);
+                line-height: var(--body08-lh);
+              }
+            }
           }
         }
       }
@@ -412,10 +566,15 @@
       .projects {
         &__list {
           &-card {
+            .img {
+              display: none;
+            }
+
             .wrap {
               width: calc(100% - 2rem);
               height: calc(100vh - 6rem);
               @include mid();
+              padding: 1rem;
 
               .number {
                 font-size: 2.5rem;

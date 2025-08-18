@@ -27,9 +27,9 @@
   <div class="loading"></div>
   <header class="header">
     <div class="container-fluid wrap">
-      <div class="branch">
-        <a href="/">Cyan Nguyen.</a>
-      </div>
+      <a href="/" class="branch">
+        <p class="branch__title">Cyan Ng.</p>
+      </a>
       <div class="nav">
         <a class="contact" href="/">Contact.</a>
       </div>
@@ -42,20 +42,19 @@
   <main class="main-wrapper">
     <section class="hero">
       <div class="content">
-        <div class="content-line">
-          <h1 class="title">Frontend</h1>
-          <div id="silk-grey" class="silk"></div>
-        </div>
-        <div class="content-line middle">
-          <div id="silk-blue" class="silk"></div>
-          <h1 class="title">Developer</h1>
-        </div>
-        <div class="content-line">
+        <div class="content__line">
           <h1 class="title">Cyan Ng.</h1>
-          <div>
-            <p class="intro">
-              My nickname is Cyan, I'm a Frontend Developer with 4 years of
-              experience, and I always want to bring great experience to
+        </div>
+        <div class="content__line --middle">
+          <h1 class="title role">Frontend Developer</h1>
+        </div>
+
+        <div class="content__line --bottom">
+          <div id="silk-blue" class="silk"></div>
+          <div class="intro">
+            <p>
+              My name is Cyan, I am Vietnamese. I'm a Frontend Developer with 4 years of
+              experiences, and I always want to bring great experience to
               clients. I love this job, always to learn and build up skills.
               <br />
               I always try my best in every product with my co-workers. It's
@@ -65,192 +64,70 @@
         </div>
       </div>
       <div class="explore">
-        <p>Scroll to explore project...</p>
+        <div class="cards">
+          <div class="cards__item --1">
+            <p>Style</p>
+          </div>
+          <div class="cards__item --2">
+            <p>Focus</p>
+          </div>
+          <div class="cards__item --3">
+            <p>Motion</p>
+          </div>
+          <div class="cards__item --4">
+            <p>Interaction</p>
+          </div>
+          <div class="cards__item --5">
+            <p>explore</p>
+          </div>
+        </div>
+        <!-- <p>Scroll to explore project...</p> -->
       </div>
     </section>
     <section class="projects">
 
       <div id="prj-list" class="projects__list">
-        <!-- <div id="prj-list-track" class="projects__track horizontal">
-          <div class="projects__list-card">
-            <div class="bg">
-              <img src="/img/home/gallary-img-1.jpg" alt="Project 1" />
-            </div>
-            <div class="wrap">
-              <p class="number">.01</p>
-
-              <div class="content">
-                <p class="sub-title">Freelancer</p>
-                <h2 class="title">Jobs On Demand</h2>
-
-                <div class="desc">JobsOnDemand (JOD), an Aptus company, started in 2015 by creating a secure platform
-                  that instantly connects hirers with freelancers (platform).<br />
-                  JobsOnDemand (Jod) is a leading real-time job-matching platform that connects businesses with
-                  flexible, on-demand workers across various industries such as logistics, food production, and retail.
-                  Designed for today’s fast-paced workforce, Jod empowers job seekers to pick up shifts instantly—no
-                  resumes or interviews needed—and get paid as early as the next day.
-                </div>
-                <a href="https://www.jodapp.com/" target="_blank" class="view">
-                  <span>View</span>
-                  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em"
-                    width="1em" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                      d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8">
-                    </path>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="projects__list-card">
-            <div class="bg">
-              <img src="/img/home/gallary-img-2.jpg" alt="Project 2" />
-            </div>
-            <div class="wrap">
-              <p class="number">.02</p>
-
-              <div class="content">
-                <p class="sub-title">Freelancer</p>
-                <h2 class="title">Jobs On Demand</h2>
-
-                <div class="desc">JobsOnDemand (JOD), an Aptus company, started in 2015 by creating a secure platform
-                  that instantly connects hirers with freelancers (platform).<br />
-                  JobsOnDemand (Jod) is a leading real-time job-matching platform that connects businesses with
-                  flexible, on-demand workers across various industries such as logistics, food production, and retail.
-                  Designed for today’s fast-paced workforce, Jod empowers job seekers to pick up shifts instantly—no
-                  resumes or interviews needed—and get paid as early as the next day.
-                </div>
-                <a href="https://www.jodapp.com/" target="_blank" class="view">
-                  <span>View</span>
-                  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em"
-                    width="1em" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                      d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8">
-                    </path>
-                  </svg>
-                </a>
-
-
-              </div>
-
-            </div>
-          </div>
-          <div class="projects__list-card">
-            <div class="bg">
-              <img src="/img/home/gallary-img-3.jpg" alt="Project 3" />
-            </div>
-            <div class="wrap">
-              <p class="number">.03</p>
-
-              <div class="content">
-                <p class="sub-title">Freelancer</p>
-                <h2 class="title">Jobs On Demand</h2>
-
-                <div class="desc">JobsOnDemand (JOD), an Aptus company, started in 2015 by creating a secure platform
-                  that instantly connects hirers with freelancers (platform).<br />
-                  JobsOnDemand (Jod) is a leading real-time job-matching platform that connects businesses with
-                  flexible, on-demand workers across various industries such as logistics, food production, and retail.
-                  Designed for today’s fast-paced workforce, Jod empowers job seekers to pick up shifts instantly—no
-                  resumes or interviews needed—and get paid as early as the next day.
-                </div>
-                <a href="https://www.jodapp.com/" target="_blank" class="view">
-                  <span>View</span>
-                  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em"
-                    width="1em" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                      d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8">
-                    </path>
-                  </svg>
-                </a>
-
-
-              </div>
-
-            </div>
-          </div>
-          <div class="projects__list-card">
-            <div class="bg">
-              <img src="/img/home/gallary-img-4.jpg" alt="Project 4" />
-            </div>
-            <div class="wrap">
-              <p class="number">.04</p>
-
-              <div class="content">
-                <p class="sub-title">Freelancer</p>
-                <h2 class="title">Jobs On Demand</h2>
-
-                <div class="desc">JobsOnDemand (JOD), an Aptus company, started in 2015 by creating a secure platform
-                  that instantly connects hirers with freelancers (platform).<br />
-                  JobsOnDemand (Jod) is a leading real-time job-matching platform that connects businesses with
-                  flexible, on-demand workers across various industries such as logistics, food production, and retail.
-                  Designed for today’s fast-paced workforce, Jod empowers job seekers to pick up shifts instantly—no
-                  resumes or interviews needed—and get paid as early as the next day.
-                </div>
-                <a href="https://www.jodapp.com/" target="_blank" class="view">
-                  <span>View</span>
-                  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em"
-                    width="1em" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                      d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8">
-                    </path>
-                  </svg>
-                </a>
-
-
-              </div>
-
-            </div>
-          </div>
-          <div class="projects__list-card">
-            <div class="bg">
-              <img src="/img/home/gallary-img-5.jpg" alt="Project 5" />
-            </div>
-            <div class="wrap">
-              <p class="number">.05</p>
-
-              <div class="content">
-                <p class="sub-title">Freelancer</p>
-                <h2 class="title">Jobs On Demand</h2>
-
-                <div class="desc">JobsOnDemand (JOD), an Aptus company, started in 2015 by creating a secure platform
-                  that instantly connects hirers with freelancers (platform).<br />
-                  JobsOnDemand (Jod) is a leading real-time job-matching platform that connects businesses with
-                  flexible, on-demand workers across various industries such as logistics, food production, and retail.
-                  Designed for today’s fast-paced workforce, Jod empowers job seekers to pick up shifts instantly—no
-                  resumes or interviews needed—and get paid as early as the next day.
-                </div>
-                <a href="https://www.jodapp.com/" target="_blank" class="view">
-                  <span>View</span>
-                  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em"
-                    width="1em" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                      d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8">
-                    </path>
-                  </svg>
-                </a>
-
-
-              </div>
-
-            </div>
-          </div>
-        </div> -->
         <div id="prj-list-track" class="projects__track horizontal">
           <div class="line">
-            <svg width="7504" height="661" viewBox="0 0 7504 661" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path class="line__path"
-                d="M4 204.341C4 204.341 161.334 240.334 319.685 125.858C478.037 11.3812 555.94 383.805 673.049 345.812C790.158 307.82 1058.96 -51.5748 1220.41 11.3811C1381.85 74.3371 1495.87 345.812 1680.7 345.812C1865.53 345.812 2076.83 575.265 2186.3 570.266C2295.77 565.267 2829.89 586.263 2861.97 345.812C2894.05 105.362 3053.42 19.3792 3318.7 11.3811C3583.97 3.38308 3527.97 345.812 3838.05 345.812C4148.13 345.812 4024.91 674.744 4269.83 656.248C4514.74 637.752 4825.84 496.781 4914.43 345.812C5003.03 194.843 5044.78 44.8741 5427.17 11.3811C5809.56 -22.1118 5919.03 345.812 6203.14 345.812C6487.26 345.812 6568.22 650.749 6687.36 570.266C6806.51 489.783 6834.01 229.836 7116.59 345.812C7399.18 461.789 7500 345.812 7500 345.812"
-                stroke="white" stroke-width="8" stroke-linecap="round" stroke-dasharray="16 16" />
-            </svg>
+            <div class="line__wrap">
+              <svg width="15641" height="747" viewBox="0 0 15641 747" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="line__path root"
+                  d="M4.00098 256.339C4.00098 256.339 328.015 450.474 647 335.997C965.985 221.521 1103.09 45.9897 1339 7.99757C1574.91 -29.9946 1882.78 273.042 2208 335.998C2533.22 398.954 2888.68 38.9981 3261 38.9981C3633.32 38.9981 4083.44 587.857 4398.5 549.498C4713.56 511.138 5162 8.00022 5510 7.99877C5858 7.99731 5930.12 557.496 6464.5 549.498C6998.88 541.5 7141.86 38.9981 7766.5 38.9981C8391.14 38.9981 9001.15 760.996 9494.5 742.5C9987.85 724.004 10186 69.9961 10721.5 38.9981C11257 8 11310 615 11782.5 659.5C12255 704 12497.2 126 13069.5 126C13641.8 126 13522.7 565.776 13894 618C14353.9 682.689 14624 -115.5 15006.5 197.5C15389 510.5 15637 564 15637 564"
+                  stroke="#FFB84F" stroke-width="15" stroke-linecap="round" stroke-dasharray="16 16" />
+              </svg>
+              <svg width="15641" height="747" viewBox="0 0 15641 747" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="line__path sub__1"
+                  d="M4.00098 256.339C4.00098 256.339 328.015 450.474 647 335.997C965.985 221.521 1103.09 45.9897 1339 7.99757C1574.91 -29.9946 1882.78 273.042 2208 335.998C2533.22 398.954 2888.68 38.9981 3261 38.9981C3633.32 38.9981 4083.44 587.857 4398.5 549.498C4713.56 511.138 5162 8.00022 5510 7.99877C5858 7.99731 5930.12 557.496 6464.5 549.498C6998.88 541.5 7141.86 38.9981 7766.5 38.9981C8391.14 38.9981 9001.15 760.996 9494.5 742.5C9987.85 724.004 10186 69.9961 10721.5 38.9981C11257 8 11310 615 11782.5 659.5C12255 704 12497.2 126 13069.5 126C13641.8 126 13522.7 565.776 13894 618C14353.9 682.689 14624 -115.5 15006.5 197.5C15389 510.5 15637 564 15637 564"
+                  stroke="#E1DBFD" stroke-width="15" stroke-linecap="round" stroke-dasharray="16 16" />
+              </svg>
 
+              <svg width="15641" height="747" viewBox="0 0 15641 747" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="line__path sub__2"
+                  d="M4.00098 256.339C4.00098 256.339 328.015 450.474 647 335.997C965.985 221.521 1103.09 45.9897 1339 7.99757C1574.91 -29.9946 1882.78 273.042 2208 335.998C2533.22 398.954 2888.68 38.9981 3261 38.9981C3633.32 38.9981 4083.44 587.857 4398.5 549.498C4713.56 511.138 5162 8.00022 5510 7.99877C5858 7.99731 5930.12 557.496 6464.5 549.498C6998.88 541.5 7141.86 38.9981 7766.5 38.9981C8391.14 38.9981 9001.15 760.996 9494.5 742.5C9987.85 724.004 10186 69.9961 10721.5 38.9981C11257 8 11310 615 11782.5 659.5C12255 704 12497.2 126 13069.5 126C13641.8 126 13522.7 565.776 13894 618C14353.9 682.689 14624 -115.5 15006.5 197.5C15389 510.5 15637 564 15637 564"
+                  stroke="#FF764A" stroke-width="15" stroke-linecap="round" stroke-dasharray="16 16" />
+              </svg>
+              <svg width="15641" height="747" viewBox="0 0 15641 747" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="line__path sub__3"
+                  d="M4.00098 256.339C4.00098 256.339 328.015 450.474 647 335.997C965.985 221.521 1103.09 45.9897 1339 7.99757C1574.91 -29.9946 1882.78 273.042 2208 335.998C2533.22 398.954 2888.68 38.9981 3261 38.9981C3633.32 38.9981 4083.44 587.857 4398.5 549.498C4713.56 511.138 5162 8.00022 5510 7.99877C5858 7.99731 5930.12 557.496 6464.5 549.498C6998.88 541.5 7141.86 38.9981 7766.5 38.9981C8391.14 38.9981 9001.15 760.996 9494.5 742.5C9987.85 724.004 10186 69.9961 10721.5 38.9981C11257 8 11310 615 11782.5 659.5C12255 704 12497.2 126 13069.5 126C13641.8 126 13522.7 565.776 13894 618C14353.9 682.689 14624 -115.5 15006.5 197.5C15389 510.5 15637 564 15637 564"
+                  stroke="#47B172" stroke-width="15" stroke-linecap="round" stroke-dasharray="16 16" />
+              </svg>
+              <svg width="15635" height="741" viewBox="0 0 15635 741" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="line__path sub__4"
+                  d="M1.00098 253.339C1.00098 253.339 325.015 447.474 644 332.997C962.985 218.521 1100.09 42.9897 1336 4.99757C1571.91 -32.9946 1879.78 270.042 2205 332.998C2530.22 395.954 2885.68 35.9981 3258 35.9981C3630.32 35.9981 4080.44 584.857 4395.5 546.498C4710.56 508.138 5159 5.00022 5507 4.99877C5855 4.99731 5927.12 554.496 6461.5 546.498C6995.88 538.5 7138.86 35.9981 7763.5 35.9981C8388.14 35.9981 8998.15 757.996 9491.5 739.5C9984.85 721.004 10183 66.9961 10718.5 35.9981C11254 5 11307 612 11779.5 656.5C12252 701 12494.2 123 13066.5 123C13638.8 123 13519.7 562.776 13891 615C14350.9 679.689 14621 -118.5 15003.5 194.5C15386 507.5 15634 561 15634 561"
+                  stroke="#afadaa" stroke-width="1" stroke-linecap="round" stroke-dasharray="16 16" />
+              </svg>
 
+            </div>
           </div>
           <div class="projects__list-card">
+            <div class="img">
+              <img src="/img/home/prj-img-1.jpg" alt="Job on Demand" />
+            </div>
             <div class="wrap">
               <p class="number">.01</p>
 
               <div class="content">
-                <p class="sub-title">Freelancer</p>
+                <p class="sub-title">Frontend</p>
                 <h2 class="title">Jobs On Demand</h2>
 
                 <div class="desc">JobsOnDemand (JOD), an Aptus company, started in 2015 by creating a secure platform
@@ -273,11 +150,14 @@
             </div>
           </div>
           <div class="projects__list-card">
+            <div class="img">
+              <img src="/img/home/prj-img-1.jpg" alt="Job on Demand" />
+            </div>
             <div class="wrap">
               <p class="number">.02</p>
 
               <div class="content">
-                <p class="sub-title">Freelancer</p>
+                <p class="sub-title">Frontend</p>
                 <h2 class="title">Jobs On Demand</h2>
 
                 <div class="desc">JobsOnDemand (JOD), an Aptus company, started in 2015 by creating a secure platform
@@ -303,11 +183,14 @@
             </div>
           </div>
           <div class="projects__list-card">
+            <div class="img">
+              <img src="/img/home/prj-img-1.jpg" alt="Job on Demand" />
+            </div>
             <div class="wrap">
               <p class="number">.03</p>
 
               <div class="content">
-                <p class="sub-title">Freelancer</p>
+                <p class="sub-title">Frontend</p>
                 <h2 class="title">Jobs On Demand</h2>
 
                 <div class="desc">JobsOnDemand (JOD), an Aptus company, started in 2015 by creating a secure platform
@@ -333,11 +216,14 @@
             </div>
           </div>
           <div class="projects__list-card">
+            <div class="img">
+              <img src="/img/home/prj-img-1.jpg" alt="Job on Demand" />
+            </div>
             <div class="wrap">
               <p class="number">.04</p>
 
               <div class="content">
-                <p class="sub-title">Freelancer</p>
+                <p class="sub-title">Frontend</p>
                 <h2 class="title">Jobs On Demand</h2>
 
                 <div class="desc">JobsOnDemand (JOD), an Aptus company, started in 2015 by creating a secure platform
@@ -363,11 +249,14 @@
             </div>
           </div>
           <div class="projects__list-card">
+            <div class="img">
+              <img src="/img/home/prj-img-1.jpg" alt="Job on Demand" />
+            </div>
             <div class="wrap">
               <p class="number">.05</p>
 
               <div class="content">
-                <p class="sub-title">Freelancer</p>
+                <p class="sub-title">Frontend</p>
                 <h2 class="title">Jobs On Demand</h2>
 
                 <div class="desc">JobsOnDemand (JOD), an Aptus company, started in 2015 by creating a secure platform

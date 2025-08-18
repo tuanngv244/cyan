@@ -1,5 +1,5 @@
 /////////////////////////// SCROLL ///////////////////////////////
-$(document).ready(function () {
+$(document).ready(async function () {
   let header = $('.header'),
     btnMenu = $('.header__btnmenu'),
     mobile,
@@ -47,7 +47,7 @@ $(document).ready(function () {
   function bgSquares() {
     const direction = 'right'; // 'right', 'left', 'up', 'down', or 'diagonal'
     const speed = 0.5;
-    const borderColor = '#333';
+    const borderColor = '#ecebebff';
     const squareSize = 40;
     const hoverFillColor = '#11d0f2';
 
@@ -315,7 +315,6 @@ $(document).ready(function () {
     }
     document.addEventListener('visibilitychange', handleVisibilityChange);
 
-    renderShape(configs.grey, 'silk-grey');
     renderShape(configs.blue, 'silk-blue');
 
     // Cleanup function
@@ -334,6 +333,47 @@ $(document).ready(function () {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
   };
+
+  // expore cards
+  function exploreCards() {
+    const explore = document.querySelector('.homepage .hero .explore');
+    const cards = document.querySelectorAll('.homepage .explore .cards .cards__item');
+
+    const centerCard = cards[2];
+
+    if (cards.length === 0) return;
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: explore,
+        start: 'center bottom',
+        end: 'bottom top',
+        scrub: 1,
+        markers: false
+      }
+    });
+
+    cards.forEach((card, index) => {
+      const cardRect = card.getBoundingClientRect();
+      const centerRect = centerCard.getBoundingClientRect();
+      const centerX = centerRect.left + centerRect.width / 2;
+      const cardCenterX = cardRect.left + cardRect.width / 2;
+      const moveDistance = centerX - cardCenterX;
+
+      tl.to(card, {
+        x: moveDistance,
+        rotation: 0,
+        scale: 0.8,
+        y: 200,
+        opacity: 0,
+        duration: 1,
+        ease: "power2.inOut"
+      }, 0);
+    });
+
+
+
+  }
 
   // Scroll Cards
   function prjAnimation() {
@@ -363,8 +403,6 @@ $(document).ready(function () {
             console.log(`Horizontal scroll: ${Math.round(progress * 100)}% | SVG line drawing: ${Math.round(progress * 100)}%`);
           }
         },
-        onStart: () => console.log('🎬 Horizontal scroll & SVG line drawing started'),
-        onComplete: () => console.log('✅ Horizontal scroll & SVG line drawing completed'),
       },
     });
 
@@ -377,18 +415,18 @@ $(document).ready(function () {
         force3D: true,
       }, 0);
 
+
       tl.fromTo(
         cards,
         {
           clipPath: 'inset(50% 50% 50% 50%)',
-          rotate: (i) => (i % 2 === 0 ? 8 : -8)
         },
         {
           clipPath: 'inset(0% 0% 0% 0%)',
           ease: 'none',
           duration: 0.3,
           force3D: true,
-          rotate: (i) => i === 0 ? 0 : i % 2 === 0 ? 8 : -8,
+          // rotate: (i) => i === 0 ? 0 : rotates[i],
           scrollTrigger: {
             trigger: container,
             start: 'start start+=30%',
@@ -401,21 +439,39 @@ $(document).ready(function () {
     }
 
     function drawSVG() {
-      const svgLine = document.querySelector('.line__path');
-      gsap.set(svgLine, {
-        drawSVG: "0%",
-        strokeDasharray: '16px 16px',
-        filter: 'drop-shadow(0 0 5px rgba(49, 196, 222, 0.5))',
+      const rootLine = document.querySelector('.projects .line .line__path.root');
+      const subLine1 = document.querySelector('.projects .line .line__path.sub__1');
+      const subLine2 = document.querySelector('.projects .line .line__path.sub__2');
+      const subLine3 = document.querySelector('.projects .line .line__path.sub__3');
+      const subLine4 = document.querySelector('.projects .line .line__path.sub__4');
+
+
+      gsap.fromTo(subLine4, { opacity: 0 }, {
+        opacity: 1,
+        duration: 1,
+        scrollTrigger: {
+          trigger: subLine4,
+          start: 'start start+=30%',
+          end: 'end end',
+          scrub: 1,
+        },
       });
 
-      tl.to(svgLine, {
-        drawSVG: "0% 100%",
-        strokeDasharray: '16px 16px',
-        filter: 'drop-shadow(0 0 5px rgba(49, 196, 222, 0.5))',
-        ease: 'none',
-        duration: 1,
-      }, 0);
+      const createDraw = (ele, duration = 1) => {
+        gsap.set(ele, {
+          drawSVG: "0%",
+        });
+        tl.to(ele, {
+          drawSVG: "0% 100%",
+          ease: 'none',
+          duration: duration,
+        }, 0);
+      }
 
+      createDraw(rootLine);
+      createDraw(subLine1, 1.05);
+      createDraw(subLine2, 1.1);
+      createDraw(subLine3, 1.15);
     }
 
     scrollHorizontal()
@@ -446,10 +502,11 @@ $(document).ready(function () {
 
 
   mobileDetect();
-  smoothLenis();
+  await smoothLenis();
   bgSquares();
   bgSilk();
   prjAnimation()
+  exploreCards()
 
   // Init
   function init() {
