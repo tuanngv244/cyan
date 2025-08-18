@@ -8,7 +8,6 @@
   z-index: 201;
   width: 100vw;
 
-
   .container-fluid {
     display: flex;
     align-items: center;
@@ -20,14 +19,13 @@
       display: flex;
       align-items: center;
 
-
       &__title {
         font-size: var(--body15-fs);
         line-height: var(--body15-lh);
         color: $black-cl;
         // mix-blend-mode: difference;
         font-family: $ff-gly;
-        font-weight: 400;
+        font-weight: 600;
         mix-blend-mode: difference;
       }
 
@@ -46,7 +44,7 @@
         color: $black-cl;
         // mix-blend-mode: difference;
         font-family: $ff-gly;
-        font-weight: 400;
+        font-weight: 600;
         mix-blend-mode: difference;
       }
     }

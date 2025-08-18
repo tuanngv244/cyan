@@ -31,7 +31,7 @@ $(document).ready(async function () {
     const lenis = new Lenis({
       smooth: true,
       autoRaf: false,
-      lerp: 0.1
+      lerp: 0.1,
     });
 
     lenis.on('scroll', ScrollTrigger.update);
@@ -57,7 +57,6 @@ $(document).ready(async function () {
     const ctx = canvas.getContext('2d');
 
     let requestRef = null;
-    let numSquaresX, numSquaresY;
     let gridOffset = { x: 0, y: 0 };
     let hoveredSquare = null;
     let isVisible = true;
@@ -332,9 +331,9 @@ $(document).ready(async function () {
 
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
-  };
+  }
 
-  // expore cards
+  // Explore cards
   function exploreCards() {
     const explore = document.querySelector('.homepage .hero .explore');
     const cards = document.querySelectorAll('.homepage .explore .cards .cards__item');
@@ -349,8 +348,8 @@ $(document).ready(async function () {
         start: 'center bottom',
         end: 'bottom top',
         scrub: 1,
-        markers: false
-      }
+        markers: false,
+      },
     });
 
     cards.forEach((card, index) => {
@@ -360,19 +359,20 @@ $(document).ready(async function () {
       const cardCenterX = cardRect.left + cardRect.width / 2;
       const moveDistance = centerX - cardCenterX;
 
-      tl.to(card, {
-        x: moveDistance,
-        rotation: 0,
-        scale: 0.8,
-        y: 200,
-        opacity: 0,
-        duration: 1,
-        ease: "power2.inOut"
-      }, 0);
+      tl.to(
+        card,
+        {
+          x: moveDistance,
+          rotation: 0,
+          scale: 0.8,
+          y: 200,
+          opacity: 0,
+          duration: 1,
+          ease: 'power2.inOut',
+        },
+        0,
+      );
     });
-
-
-
   }
 
   // Scroll Cards
@@ -387,7 +387,6 @@ $(document).ready(async function () {
     const viewportWidth = window.innerWidth;
     const scrollDistance = Math.max(0, totalWidth - viewportWidth);
 
-
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: container,
@@ -400,7 +399,11 @@ $(document).ready(async function () {
         onUpdate: (self) => {
           const progress = self.progress;
           if (Math.round(progress * 100) % 20 === 0) {
-            console.log(`Horizontal scroll: ${Math.round(progress * 100)}% | SVG line drawing: ${Math.round(progress * 100)}%`);
+            console.log(
+              `Horizontal scroll: ${Math.round(progress * 100)}% | SVG line drawing: ${Math.round(
+                progress * 100,
+              )}%`,
+            );
           }
         },
       },
@@ -408,13 +411,16 @@ $(document).ready(async function () {
 
     function scrollHorizontal() {
       horizontal.style.willChange = 'transform';
-      tl.to(horizontal, {
-        x: -scrollDistance,
-        ease: 'none',
-        duration: 1,
-        force3D: true,
-      }, 0);
-
+      tl.to(
+        horizontal,
+        {
+          x: -scrollDistance,
+          ease: 'none',
+          duration: 1,
+          force3D: true,
+        },
+        0,
+      );
 
       tl.fromTo(
         cards,
@@ -445,28 +451,35 @@ $(document).ready(async function () {
       const subLine3 = document.querySelector('.projects .line .line__path.sub__3');
       const subLine4 = document.querySelector('.projects .line .line__path.sub__4');
 
-
-      gsap.fromTo(subLine4, { opacity: 0 }, {
-        opacity: 1,
-        duration: 1,
-        scrollTrigger: {
-          trigger: subLine4,
-          start: 'start start+=30%',
-          end: 'end end',
-          scrub: 1,
+      gsap.fromTo(
+        subLine4,
+        { opacity: 0 },
+        {
+          opacity: 1,
+          duration: 1,
+          scrollTrigger: {
+            trigger: subLine4,
+            start: 'start start+=30%',
+            end: 'end end',
+            scrub: 1,
+          },
         },
-      });
+      );
 
       const createDraw = (ele, duration = 1) => {
         gsap.set(ele, {
-          drawSVG: "0%",
+          drawSVG: '0%',
         });
-        tl.to(ele, {
-          drawSVG: "0% 100%",
-          ease: 'none',
-          duration: duration,
-        }, 0);
-      }
+        tl.to(
+          ele,
+          {
+            drawSVG: '0% 100%',
+            ease: 'none',
+            duration: duration,
+          },
+          0,
+        );
+      };
 
       createDraw(rootLine);
       createDraw(subLine1, 1.05);
@@ -474,8 +487,8 @@ $(document).ready(async function () {
       createDraw(subLine3, 1.15);
     }
 
-    scrollHorizontal()
-    drawSVG()
+    scrollHorizontal();
+    drawSVG();
 
     let resizeTimeout;
     const handleResize = () => {
@@ -489,7 +502,7 @@ $(document).ready(async function () {
     window.cleanupPrjAnimation = function () {
       window.removeEventListener('resize', handleResize);
       horizontal.style.willChange = 'auto';
-      cardsImgs.forEach(img => {
+      cardsImgs.forEach((img) => {
         img.style.willChange = 'auto';
       });
       ScrollTrigger.getAll().forEach((trigger) => {
@@ -498,22 +511,106 @@ $(document).ready(async function () {
         }
       });
     };
-  };
+  }
 
+  // Skills Cards
+  function skillsCards() {
+    const skills = document.querySelector('.homepage .skills');
+    const cards = document.querySelectorAll('.homepage .skills .cards .cards__item');
+
+    const centerCard = cards[2];
+
+    if (cards.length === 0) return;
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: skills,
+        start: 'center bottom+=45%',
+        end: 'bottom bottom',
+        scrub: 1,
+        markers: false,
+      },
+    });
+
+    cards.forEach((card, index) => {
+      const cardRect = card.getBoundingClientRect();
+      const centerRect = centerCard.getBoundingClientRect();
+      const centerX = centerRect.left + centerRect.width / 2;
+      const cardCenterX = cardRect.left + cardRect.width / 2;
+      const moveDistance = centerX - cardCenterX;
+      const separateDistance = cardCenterX - centerX;
+
+      const rotates = [16, 8, 0, -8, -16];
+      const xDistances = [6, 3, 0, -3, -6];
+
+      tl.set(
+        card,
+        {
+          x: moveDistance,
+          rotation: 0,
+          scale: 0.8,
+          y: -50,
+          opacity: 0.3,
+          ease: 'power2.inOut',
+        },
+        0,
+      );
+      tl.to(
+        card,
+        {
+          x: xDistances[index],
+          rotation: rotates[index],
+          scale: 1,
+          y: 100,
+          opacity: 1,
+          duration: 1,
+          ease: 'power2.inOut',
+        },
+        0,
+      );
+    });
+  }
+
+  // Hover fixed
+  function hoverFixed() {
+    let hoverFixed = $('.hover-fixed');
+
+    hoverFixed.mouseleave(function (e) {
+      gsap.to($(this), 0.3, { x: 0, y: 0 });
+    });
+    hoverFixed.mousemove(function (e) {
+      followParallaxMouse(e, $(this));
+    });
+
+    function followParallaxMouse(e, target) {
+      parallaxMouse(e, target, 80);
+    }
+
+    function parallaxMouse(e, target, movement) {
+      let $this = target;
+      let relX = e.pageX - $this.offset().left;
+      let relY = e.pageY - $this.offset().top;
+      gsap.to(target, 0.3, {
+        x: ((relX - $this.width() / 2) / $this.width()) * movement,
+        y: ((relY - $this.height() / 2) / $this.height()) * movement,
+      });
+    }
+  }
 
   mobileDetect();
   await smoothLenis();
   bgSquares();
   bgSilk();
-  prjAnimation()
-  exploreCards()
+  prjAnimation();
+  exploreCards();
+  skillsCards();
+  hoverFixed();
 
   // Init
   function init() {
-
     $('body')
       .imagesLoaded()
-      .progress({ background: true }, function (instance, image) { })
+      .progress({ background: true }, function (instance, image) {})
       .always(function (instance) {
         // setTimeout(() => {
         //     $('.loading').addClass('--hide')
@@ -535,6 +632,3 @@ $(document).ready(async function () {
     if (window.cleanupPrjAnimation) window.cleanupPrjAnimation();
   });
 });
-
-
-

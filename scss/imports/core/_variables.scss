@@ -1,11 +1,10 @@
 :root {
-  --spc-fs: 12rem;
-  --spc-lh: 13rem;
+  --spc-fs: 11rem;
+  --spc-lh: 12rem;
 
   --big-fs: 8rem;
   --big-lh: 9rem;
 
-  // fontsize text
   --h1-fs: 5rem;
   --h1-lh: 6rem;
 
@@ -57,11 +56,17 @@
 
     --big-fs: 7rem;
     --big-lh: 8rem;
+
+    --h1-fs: 4rem;
+    --h1-lh: 5rem;
   }
 
   @media (max-width: 1440px) {
     --spc-fs: 6rem;
     --spc-lh: 7rem;
+
+    --h1-fs: 5rem;
+    --h1-lh: 6rem;
   }
 
   @media (max-width: 1024px) {
@@ -69,6 +74,9 @@
     --spc-lh: 6rem;
     --big-fs: 6rem;
     --big-lh: 7rem;
+
+    --h1-fs: 4rem;
+    --h1-lh: 5rem;
   }
 
   @media (max-width: 992px) {
@@ -77,6 +85,9 @@
 
     --big-fs: 3.5rem;
     --big-lh: 4.5rem;
+
+    --h1-fs: 2.5rem;
+    --h1-lh: 3.5rem;
   }
 
   @media (max-width: 767px) {
@@ -85,6 +96,9 @@
 
     --big-fs: 3rem;
     --big-lh: 4rem;
+
+    --h1-fs: 2rem;
+    --h1-lh: 3rem;
 
     --body15-fs: 1.125rem;
     --body15-lh: 1.5rem;
@@ -102,7 +116,6 @@ $ff-pop-regular: 'Pop-Regular';
 $ff-pop-thin: 'Pop-Thin';
 $ff-pop-italic: 'Pop-Italic';
 
-
 /*primary colors*/
 $main-cl: #0b5f91;
 
@@ -114,11 +127,11 @@ $gray-text-cl: #f3efef;
 $lightgray-cl: #c4c4c4;
 $line-cl: #e5e5e5;
 
-$purple-cl: #E1DBFD;
-$orange-cl: #FF764A;
-$yellow-cl: #FFB84F;
-$light-blue-cl: #90C3CD;
-$green-cl: #47B172;
+$purple-cl: #e1dbfd;
+$orange-cl: #ff764a;
+$yellow-cl: #ffb84f;
+$light-blue-cl: #90c3cd;
+$green-cl: #47b172;
 
 // level index
 $zIndex-lv0: -1;
@@ -153,18 +166,8 @@ $sm-min: 992px;
 $md-min: 1200px;
 $lg-min: 1600px;
 
-$xxs-max: (
-  $xxs-min - 1
-); // Small Mobile
-$xs-max: (
-  $xs-min - 1
-); // Mobile
-$sm-max: (
-  $sm-min - 1
-); // Tablet
-$md-max: (
-  $md-min - 1
-); // Desktop
-$lg-max: (
-  $lg-min - 1
-); // Large Desktop
+$xxs-max: ($xxs-min - 1); // Small Mobile
+$xs-max: ($xs-min - 1); // Mobile
+$sm-max: ($sm-min - 1); // Tablet
+$md-max: ($md-min - 1); // Desktop
+$lg-max: ($lg-min - 1); // Large Desktop
