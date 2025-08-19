@@ -26,6 +26,17 @@ $(document).ready(async function () {
     }
   }
 
+  // View Contact
+  function viewContact() {
+    const footer = document.getElementById('footer');
+    const contact = document.querySelector('.header .nav .contact');
+    contact.addEventListener('click', (e) => {
+      e.preventDefault();
+      footer.scrollIntoView({ behavior: 'smooth' });
+    });
+  }
+
+
   // Scroll Smooth Lenis
   function smoothLenis() {
     const lenis = new Lenis({
@@ -398,13 +409,7 @@ $(document).ready(async function () {
         invalidateOnRefresh: true,
         onUpdate: (self) => {
           const progress = self.progress;
-          if (Math.round(progress * 100) % 20 === 0) {
-            console.log(
-              `Horizontal scroll: ${Math.round(progress * 100)}% | SVG line drawing: ${Math.round(
-                progress * 100,
-              )}%`,
-            );
-          }
+
         },
       },
     });
@@ -522,10 +527,12 @@ $(document).ready(async function () {
 
     if (cards.length === 0) return;
 
+    const start = mobile || tablet ? 'center bottom+=80%' : 'center bottom+=45%';
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: skills,
-        start: 'center bottom+=45%',
+        start: start,
         end: 'bottom bottom',
         scrub: 1,
         markers: false,
@@ -538,7 +545,6 @@ $(document).ready(async function () {
       const centerX = centerRect.left + centerRect.width / 2;
       const cardCenterX = cardRect.left + cardRect.width / 2;
       const moveDistance = centerX - cardCenterX;
-      const separateDistance = cardCenterX - centerX;
 
       const rotates = [16, 8, 0, -8, -16];
       const xDistances = [6, 3, 0, -3, -6];
@@ -555,19 +561,35 @@ $(document).ready(async function () {
         },
         0,
       );
-      tl.to(
-        card,
-        {
-          x: xDistances[index],
-          rotation: rotates[index],
-          scale: 1,
-          y: 100,
-          opacity: 1,
-          duration: 1,
-          ease: 'power2.inOut',
-        },
-        0,
-      );
+
+      if (mobile || tablet) {
+        tl.to(
+          card,
+          {
+            scale: 1,
+            y: (250 * (index)) + 12,
+            opacity: 1,
+            duration: 1,
+            ease: 'power2.inOut',
+          },
+          0,
+        );
+      } else {
+        tl.to(
+          card,
+          {
+            x: xDistances[index],
+            rotation: rotates[index],
+            scale: 1,
+            y: 100,
+            opacity: 1,
+            duration: 1,
+            ease: 'power2.inOut',
+          },
+          0,
+        );
+      }
+
     });
   }
 
@@ -597,7 +619,32 @@ $(document).ready(async function () {
     }
   }
 
+  // Parallax stories
+  function parallaxStories() {
+    const storyItems = gsap.utils.toArray('.stories__list-item');
+
+    storyItems.forEach((item, index) => {
+      const bg = item.querySelector('.bg');
+      const img = bg.querySelector('img');
+
+      gsap.fromTo(img, {
+        yPercent: -20
+      }, {
+        yPercent: 20,
+        ease: "none",
+        scrollTrigger: {
+          trigger: item,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1.5,
+          markers: false,
+        }
+      });
+    });
+  }
+
   mobileDetect();
+  viewContact()
   await smoothLenis();
   bgSquares();
   bgSilk();
@@ -605,12 +652,13 @@ $(document).ready(async function () {
   exploreCards();
   skillsCards();
   hoverFixed();
+  parallaxStories();
 
   // Init
   function init() {
     $('body')
       .imagesLoaded()
-      .progress({ background: true }, function (instance, image) {})
+      .progress({ background: true }, function (instance, image) { })
       .always(function (instance) {
         // setTimeout(() => {
         //     $('.loading').addClass('--hide')

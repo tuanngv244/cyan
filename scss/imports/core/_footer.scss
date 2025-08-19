@@ -1,7 +1,73 @@
 @use 'common' as *;
 
 footer {
-  height: 100vh;
+  height: fit-content;
   width: 100%;
-  // background-color: $black-cl;
+  border-top: 1px solid $black-cl;
+  // background-color: #f9f4eb;
+  background-color: $black-cl;
+  position: relative;
+  z-index: 5;
+  padding: 4rem 6rem;
+  bottom: 0;
+
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0 2rem;
+
+
+    &__item {
+      .label {
+        font-family: $ff-pop-medium;
+        font-size: var(--body10-fs);
+        line-height: var(--body10-lh);
+        font-weight: 500;
+        color: $white-cl;
+        text-transform: uppercase;
+      }
+
+      .contact__list {
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.325rem 0;
+
+        &-item,
+        a {
+          font-family: $ff-pop-bold;
+          font-size: var(--body15-fs);
+          line-height: var(--body15-fs);
+          font-weight: 500;
+          color: $white-cl;
+          cursor: pointer;
+          position: relative;
+        }
+
+        a {
+          text-transform: uppercase;
+        }
+
+      }
+    }
+  }
+
+  @include xs {
+    padding: 4rem;
+
+    .content {
+      flex-direction: column;
+      gap: 2rem 0;
+
+      &__item {
+        width: 100%;
+
+        .contact__list {
+          margin-top: 0.5rem;
+        }
+      }
+    }
+
+  }
 }

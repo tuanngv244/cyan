@@ -92,12 +92,13 @@
             height: 120px;
             border-radius: 1rem;
             overflow: hidden;
+            cursor: crosshair;
 
-            canvas {
-              width: 100% !important;
-              height: 100% !important;
-              display: block;
-            }
+            // cursor: crosshair canvas {
+            //   width: 100% !important;
+            //   height: 100% !important;
+            //   display: block;
+            // }
           }
         }
       }
@@ -196,6 +197,7 @@
         }
       }
     }
+
     .projects {
       &__list {
         height: 100vh;
@@ -332,6 +334,7 @@
           }
         }
       }
+
       &__track {
         display: flex;
         flex-direction: row;
@@ -366,6 +369,7 @@
         }
       }
     }
+
     .services {
       width: 100%;
       height: 100vh;
@@ -376,7 +380,9 @@
       align-items: center;
       justify-content: center;
       flex-direction: column;
+      overflow: hidden;
       gap: 2rem 0;
+
       &__content {
         &-title {
           text-align: center;
@@ -433,6 +439,7 @@
             color: $black-cl;
             font-family: $ff-pop-bold;
             text-transform: uppercase;
+            user-select: none;
             // @include text-linear($purple-cl, $orange-cl, $yellow-cl, $light-blue-cl, $green-cl);
           }
         }
@@ -450,9 +457,11 @@
         }
       }
     }
+
     .skills {
       width: 100%;
-      height: 100vh;
+      height: 80vh;
+
       &__content {
         &-title {
           text-align: center;
@@ -464,9 +473,10 @@
           margin-bottom: 3rem;
         }
       }
+
       .cards {
         display: flex;
-        align-items: center;
+        align-items: stretch;
         justify-content: center;
         gap: 0 3.5rem;
 
@@ -543,9 +553,11 @@
         }
       }
     }
+
     .stories {
       width: 100%;
-      height: 100vh;
+      padding-bottom: 10rem;
+
       &__content {
         &-title {
           text-align: center;
@@ -554,7 +566,90 @@
           line-height: var(--h1-lh);
           font-weight: 600;
           color: $black-cl;
-          margin-bottom: 3rem;
+          margin-bottom: 4rem;
+        }
+      }
+
+      &__list {
+        display: flex;
+        flex-direction: column;
+
+        &-item {
+          width: 50%;
+          aspect-ratio: 3/4;
+          position: relative;
+          height: 80%;
+
+
+          &:nth-child(even) {
+            margin-left: auto;
+
+            .content {
+              right: calc(50% - 200px);
+            }
+          }
+
+          &:nth-child(odd) {
+            margin-right: auto;
+
+            .content {
+              left: 100%;
+            }
+          }
+
+          .bg {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: $white-cl;
+
+            &::after {
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: rgba($color: #000000, $alpha: 0.3);
+            }
+
+            img {
+              width: 100%;
+              height: 120%;
+              margin-top: -10%;
+              object-fit: cover;
+              aspect-ratio: 3/4;
+              will-change: transform;
+            }
+          }
+
+          .content {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 2;
+
+            .label {
+              font-family: $ff-pop-bold;
+              font-size: var(--h3-fs);
+              line-height: var(--h3-lh);
+              font-weight: 500;
+              color: $black-cl;
+              mix-blend-mode: difference;
+              margin-bottom: 1rem;
+            }
+
+            .desc {
+              font-family: $ff-pop-regular;
+              font-size: var(--body12-fs);
+              line-height: var(--body12-lh);
+              font-weight: 400;
+              color: $black-cl;
+              mix-blend-mode: difference;
+              min-width: 400px;
+            }
+          }
         }
       }
     }
@@ -578,8 +673,7 @@
                 margin: 0.5rem;
                 padding-left: 5rem;
 
-                .sub-title {
-                }
+                .sub-title {}
 
                 .title {
                   font-size: 3rem;
@@ -607,9 +701,9 @@
             flex-direction: column;
 
             .silk {
-              border-radius: 2rem;
               width: 300px;
               height: 100px;
+
             }
           }
         }
@@ -631,6 +725,10 @@
             gap: 0.75rem;
             text-align: center;
 
+            &.--bottom {
+              max-width: calc(100% - 2rem);
+            }
+
             h1 {
               white-space: wrap;
             }
@@ -643,7 +741,6 @@
               width: calc(100% - 1rem);
               height: 100px;
               min-width: calc(100% - 1rem);
-              margin-top: 1rem;
             }
           }
         }
@@ -679,6 +776,7 @@
               height: calc(100vh - 6rem);
               @include mid();
               padding: 1rem;
+              top: 52%;
 
               .number {
                 font-size: 2.5rem;
@@ -692,6 +790,55 @@
                   font-size: 2.5rem;
                   line-height: 3rem;
                 }
+
+                .view {
+                  margin-top: 1rem;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .services {
+        height: 80vh;
+        gap: 0;
+
+        &__content {
+          &-title {
+            margin-bottom: 2rem;
+          }
+        }
+
+        .marquee__list {
+          gap: 0 0.25rem;
+        }
+      }
+
+      .stories {
+        &__list {
+          &-item {
+            width: 100%;
+            height: 100%;
+
+            .bg {
+              &::after {
+                background: rgba($color: #000000, $alpha: 0.7);
+              }
+
+            }
+
+            .content {
+              left: 50% !important;
+              right: initial !important;
+
+              .label {
+                color: $white-cl;
+              }
+
+              .desc {
+                min-width: 300px;
+                color: $white-cl;
               }
             }
           }
@@ -699,16 +846,26 @@
       }
 
       .skills {
-        height: 60vh;
         gap: 0;
+        height: 1500px;
 
-        .track {
-          .marquee__list {
-            &-item {
-              p {
-                font-size: var(--h3-fs);
-                line-height: var(--h3-lh);
-              }
+        .cards {
+          &__item {
+            width: 200px;
+            min-width: 200px;
+            height: 250px;
+          }
+        }
+      }
+
+      .stories {
+        &__list {
+          &-item {
+            width: 100%;
+
+            .content {
+              left: 50%;
+              right: initial !important;
             }
           }
         }

@@ -1,4 +1,5 @@
 @use "common" as *;
+
 @-ms-viewport {
   width: device-width;
 }
@@ -18,19 +19,18 @@ html {
   -webkit-text-size-adjust: 100%;
 
   scrollbar-width: none;
+  cursor: crosshair;
 }
 
 body {
   width: 100%;
   max-width: $container-max-width;
   margin: auto;
-  @include text(
-    var(--body12-fs),
+  @include text(var(--body12-fs),
     $font-main,
     var(--body12-lh),
     $black-cl,
-    none
-  );
+    none);
   background: $white-cl;
   overflow-x: hidden;
   @include customscroll();
@@ -146,8 +146,8 @@ body {
     margin-left: 0;
   }
 
-  .no-gap > .col,
-  .no-gap > [class*="col-"] {
+  .no-gap>.col,
+  .no-gap>[class*="col-"] {
     padding-right: 0;
     padding-left: 0;
   }
