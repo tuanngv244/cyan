@@ -1,7 +1,6 @@
 /////////////////////////// SCROLL ///////////////////////////////
 $(document).ready(async function () {
-  let header = $('.header'),
-    btnMenu = $('.header__btnmenu'),
+  let lenis,
     mobile,
     tablet,
     screen = {
@@ -26,23 +25,14 @@ $(document).ready(async function () {
     }
   }
 
-  // View Contact
-  function viewContact() {
-    const footer = document.getElementById('footer');
-    const contact = document.querySelector('.header .nav .contact');
-    contact.addEventListener('click', (e) => {
-      e.preventDefault();
-      footer.scrollIntoView({ behavior: 'smooth' });
-    });
-  }
-
-
   // Scroll Smooth Lenis
   function smoothLenis() {
-    const lenis = new Lenis({
+    lenis = new Lenis({
       smooth: true,
-      autoRaf: false,
-      lerp: 0.1,
+      autoRaf: true,
+      lerp: 0.5,
+      smoothWheel: true,
+      duration: 1.5,
     });
 
     lenis.on('scroll', ScrollTrigger.update);
@@ -52,6 +42,17 @@ $(document).ready(async function () {
 
     // Disable lag smoothing in GSAP to prevent any delay in scroll animations
     gsap.ticker.lagSmoothing(0);
+  }
+
+  // View Contact
+  function viewContact() {
+    const footer = document.getElementById('footer');
+    const contact = document.querySelector('.header .nav .contact');
+    contact.addEventListener('click', (e) => {
+      e.preventDefault();
+      // footer.scrollIntoView({ behavior: 'smooth' });
+      lenis.scrollTo(footer, {});
+    });
   }
 
   // Background Squares
@@ -409,7 +410,6 @@ $(document).ready(async function () {
         invalidateOnRefresh: true,
         onUpdate: (self) => {
           const progress = self.progress;
-
         },
       },
     });
@@ -567,7 +567,7 @@ $(document).ready(async function () {
           card,
           {
             scale: 1,
-            y: (250 * (index)) + 12,
+            y: 250 * index + 12,
             opacity: 1,
             duration: 1,
             ease: 'power2.inOut',
@@ -589,7 +589,6 @@ $(document).ready(async function () {
           0,
         );
       }
-
     });
   }
 
@@ -627,24 +626,30 @@ $(document).ready(async function () {
       const bg = item.querySelector('.bg');
       const img = bg.querySelector('img');
 
-      gsap.fromTo(img, {
-        yPercent: -20
-      }, {
-        yPercent: 20,
-        ease: "none",
-        scrollTrigger: {
-          trigger: item,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 1.5,
-          markers: false,
-        }
-      });
+      gsap.fromTo(
+        img,
+        {
+          yPercent: -20,
+        },
+        {
+          yPercent: 20,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: item,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1.5,
+            markers: false,
+          },
+        },
+      );
     });
   }
 
+  //  Kimfund, ITSM, Sakura, JobsOnDemand, Bambuup
+
   mobileDetect();
-  viewContact()
+  viewContact();
   await smoothLenis();
   bgSquares();
   bgSilk();
@@ -658,7 +663,7 @@ $(document).ready(async function () {
   function init() {
     $('body')
       .imagesLoaded()
-      .progress({ background: true }, function (instance, image) { })
+      .progress({ background: true }, function (instance, image) {})
       .always(function (instance) {
         // setTimeout(() => {
         //     $('.loading').addClass('--hide')

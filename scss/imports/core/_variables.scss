@@ -103,10 +103,8 @@
     --h3-fs: 1.75rem;
     --h3-lh: 2.75rem;
 
-
     --body12-fs: 1.125rem;
     --body12-lh: 1.75rem;
-
 
     --body15-fs: 1rem;
     --body15-lh: 1rem;
@@ -138,7 +136,7 @@ $line-cl: #e5e5e5;
 $purple-cl: #e1dbfd;
 $orange-cl: #ff764a;
 $yellow-cl: #ffb84f;
-$light-blue-cl: #90c3cd;
+$light-blue-cl: #75e0f5;
 $green-cl: #47b172;
 
 // level index
@@ -174,18 +172,8 @@ $sm-min: 992px;
 $md-min: 1200px;
 $lg-min: 1600px;
 
-$xxs-max: (
-  $xxs-min - 1
-); // Small Mobile
-$xs-max: (
-  $xs-min - 1
-); // Mobile
-$sm-max: (
-  $sm-min - 1
-); // Tablet
-$md-max: (
-  $md-min - 1
-); // Desktop
-$lg-max: (
-  $lg-min - 1
-); // Large Desktop
+$xxs-max: ($xxs-min - 1); // Small Mobile
+$xs-max: ($xs-min - 1); // Mobile
+$sm-max: ($sm-min - 1); // Tablet
+$md-max: ($md-min - 1); // Desktop
+$lg-max: ($lg-min - 1); // Large Desktop
