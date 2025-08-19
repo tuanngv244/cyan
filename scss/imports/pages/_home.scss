@@ -314,8 +314,8 @@
 
             .desc {
               max-width: 1000px;
-              font-size: var(--body10-fs);
-              line-height: var(--body12-lh);
+              font-size: var(--body09-fs);
+              line-height: var(--body09-lh);
               font-weight: 400;
               color: $black-cl;
               font-family: $ff-pop-regular;
@@ -670,8 +670,8 @@
               width: calc(100vw - 65%);
 
               .number {
-                font-size: 5rem;
-                line-height: 6rem;
+                font-size: 3rem;
+                line-height: 4rem;
               }
 
               .content {
