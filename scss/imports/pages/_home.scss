@@ -667,7 +667,7 @@
           &-card {
             .wrap {
               padding: 1.5rem 1.5rem 1rem 1.5rem;
-              width: calc(100vw - 40%);
+              width: calc(100vw - 55%);
 
               .number {
                 font-size: 5rem;
@@ -693,6 +693,14 @@
                 }
               }
             }
+          }
+        }
+      }
+      .skills {
+        .cards {
+          &__item {
+            width: 200px;
+            height: 250px;
           }
         }
       }
