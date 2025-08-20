@@ -27,13 +27,14 @@ $(document).ready(async function () {
 
   // Scroll Smooth Lenis
   function smoothLenis() {
-    lenis = new Lenis({
-      smooth: true,
-      autoRaf: true,
-      lerp: 0.5,
-      smoothWheel: true,
-      duration: 1.5,
-    });
+    lenis = new Lenis(
+      //   {
+      //   autoRaf: true,
+      //   lerp: 0.5,
+      //   smoothWheel: true,
+      //   duration: 1.5,
+      // }
+    );
 
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time) => {
@@ -495,27 +496,27 @@ $(document).ready(async function () {
     scrollHorizontal();
     drawSVG();
 
-    let resizeTimeout;
-    const handleResize = () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => {
-        ScrollTrigger.refresh();
-      }, 250);
-    };
-    window.addEventListener('resize', handleResize);
+    // let resizeTimeout;
+    // const handleResize = () => {
+    //   clearTimeout(resizeTimeout);
+    //   resizeTimeout = setTimeout(() => {
+    //     ScrollTrigger.refresh();
+    //   }, 250);
+    // };
+    // window.addEventListener('resize', handleResize);
 
-    window.cleanupPrjAnimation = function () {
-      window.removeEventListener('resize', handleResize);
-      horizontal.style.willChange = 'auto';
-      cardsImgs.forEach((img) => {
-        img.style.willChange = 'auto';
-      });
-      ScrollTrigger.getAll().forEach((trigger) => {
-        if (trigger.trigger === container) {
-          trigger.kill();
-        }
-      });
-    };
+    // window.cleanupPrjAnimation = function () {
+    //   window.removeEventListener('resize', handleResize);
+    //   horizontal.style.willChange = 'auto';
+    //   cardsImgs.forEach((img) => {
+    //     img.style.willChange = 'auto';
+    //   });
+    //   ScrollTrigger.getAll().forEach((trigger) => {
+    //     if (trigger.trigger === container) {
+    //       trigger.kill();
+    //     }
+    //   });
+    // };
   }
 
   // Skills Cards
@@ -661,27 +662,27 @@ $(document).ready(async function () {
 
   // Init
   function init() {
-    $('body')
-      .imagesLoaded()
-      .progress({ background: true }, function (instance, image) {})
-      .always(function (instance) {
-        // setTimeout(() => {
-        //     $('.loading').addClass('--hide')
-        // }, 150)
-      })
-      .fail(function () {
-        // console.log('all images loaded, at least one is broken');
-      })
-      .done(function (instance) {
-        // console.log('all images successfully loaded');
-      });
+    // $('body')
+    //   .imagesLoaded()
+    //   .progress({ background: true }, function (instance, image) { })
+    //   .always(function (instance) {
+    //     setTimeout(() => {
+    //         $('.loading').addClass('--hide')
+    //     }, 150)
+    //   })
+    //   .fail(function () {
+    //     // console.log('all images loaded, at least one is broken');
+    //   })
+    //   .done(function (instance) {
+    //     // console.log('all images successfully loaded');
+    //   });
   }
   init();
 
   // Global cleanup function for page unload
   window.addEventListener('beforeunload', function () {
-    if (window.cleanupSquares) window.cleanupSquares();
-    if (window.cleanupSilk) window.cleanupSilk();
-    if (window.cleanupPrjAnimation) window.cleanupPrjAnimation();
+    // if (window.cleanupSquares) window.cleanupSquares();
+    // if (window.cleanupSilk) window.cleanupSilk();
+    // if (window.cleanupPrjAnimation) window.cleanupPrjAnimation();
   });
 });
