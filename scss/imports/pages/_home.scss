@@ -1,7 +1,7 @@
 @use '../core/common' as *;
 
 .homepage {
-  background-color: #f9f4eb;
+  background-color: $main-bg-cl;
   width: 100vw;
   overflow-x: hidden;
   isolation: isolate;
@@ -32,7 +32,7 @@
 
   .main-wrapper {
     position: relative;
-    z-index: 3;
+    z-index: 2;
 
     .hero {
       width: 100vw;
@@ -212,46 +212,45 @@
           display: flex;
           flex-direction: row;
           position: relative;
+          align-items: center;
+          justify-content: center;
 
-          // &:nth-of-type(2) {
-          //   .wrap {
-          //     background-color: $purple-cl;
-          //   }
-          // }
+          &:nth-of-type(2) {
+            .wrap {
+              background: rgba($color: $purple-cl, $alpha: 0.1);
+            }
+          }
 
-          // &:nth-of-type(3) {
-          //   .wrap {
-          //     background-color: $light-blue-cl;
-          //   }
-          // }
+          &:nth-of-type(3) {
+            .wrap {
+              background: rgba($color: $light-blue-cl, $alpha: 0.1);
+            }
+          }
 
-          // &:nth-of-type(4) {
-          //   .wrap {
-          //     background-color: $orange-cl;
-          //   }
-          // }
+          &:nth-of-type(4) {
+            .wrap {
+              background: rgba($color: $orange-cl, $alpha: 0.1);
+            }
+          }
 
-          // &:nth-of-type(5) {
-          //   .wrap {
-          //     background-color: $yellow-cl;
-          //   }
-          // }
+          &:nth-of-type(5) {
+            .wrap {
+              background: rgba($color: $yellow-cl, $alpha: 0.1);
+            }
+          }
 
-          // &:nth-of-type(6) {
-          //   .wrap {
-          //     background-color: $green-cl;
-          //   }
-          // }
+          &:nth-of-type(6) {
+            .wrap {
+              background: rgba($color: $green-cl, $alpha: 0.1);
+            }
+          }
 
           .img {
-            @include mid();
-            left: 35%;
+            width: calc(100vw - 70%);
+            height: calc(100vh - 11rem);
             overflow: hidden;
-            // width: calc(100vw - 65%);
-            height: calc(100vh - 12rem);
             background-color: $white-cl;
             aspect-ratio: 3/4;
-            border-radius: 1rem;
 
             &:hover {
               img {
@@ -269,18 +268,29 @@
           }
 
           .wrap {
-            @include mid();
-            left: 60%;
-            width: calc(100vw - 65%);
-            height: calc(100vh - 8rem);
-            background: rgba($color: #000000, $alpha: 0.2);
+            width: calc(100vw - 70%);
+            height: calc(100vh - 11rem);
             backdrop-filter: blur(50px);
-
-            aspect-ratio: 1/1;
             padding: 3rem 3rem 1rem 3rem;
             display: flex;
             flex-direction: column;
-            border-radius: 1rem;
+
+            .img-mobile {
+              width: 100%;
+              height: auto;
+              max-height: 200px;
+              border-radius: 1rem;
+              overflow: hidden;
+              margin-bottom: 1rem;
+              display: none;
+
+              img {
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+                transition: all 0.3s ease-in-out;
+              }
+            }
 
             .content {
               padding-left: 2rem;
@@ -316,8 +326,8 @@
 
             .desc {
               max-width: 1000px;
-              font-size: var(--body09-fs);
-              line-height: var(--body09-lh);
+              font-size: var(--body10-fs);
+              line-height: var(--body10-lh);
               font-weight: 400;
               color: $black-cl;
               font-family: $ff-pop-regular;
@@ -696,6 +706,7 @@
       }
 
       .skills {
+
         .cards {
           &__item {
             width: 200px;
@@ -789,6 +800,10 @@
               @include mid();
               padding: 1rem;
               top: 52%;
+
+              .img-mobile {
+                display: block;
+              }
 
               .number {
                 font-size: 2.5rem;

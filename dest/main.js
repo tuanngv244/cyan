@@ -28,20 +28,27 @@ $(document).ready(async function () {
   // Scroll Smooth Lenis
   function smoothLenis() {
     lenis = new Lenis(
-      //   {
-      //   autoRaf: true,
-      //   lerp: 0.5,
-      //   smoothWheel: true,
-      //   duration: 1.5,
-      // }
+      {
+        // autoRaf: true,
+        lerp: 0.1,
+        smooth: true,
+        // smoothWheel: true,
+        // duration: 1.5,
+      }
     );
+
+    function raf(time) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
+    requestAnimationFrame(raf);
+
 
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time) => {
       lenis.raf(time * 1000);
     });
 
-    // Disable lag smoothing in GSAP to prevent any delay in scroll animations
     gsap.ticker.lagSmoothing(0);
   }
 
@@ -496,27 +503,27 @@ $(document).ready(async function () {
     scrollHorizontal();
     drawSVG();
 
-    // let resizeTimeout;
-    // const handleResize = () => {
-    //   clearTimeout(resizeTimeout);
-    //   resizeTimeout = setTimeout(() => {
-    //     ScrollTrigger.refresh();
-    //   }, 250);
-    // };
-    // window.addEventListener('resize', handleResize);
+    let resizeTimeout;
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 250);
+    };
+    window.addEventListener('resize', handleResize);
 
-    // window.cleanupPrjAnimation = function () {
-    //   window.removeEventListener('resize', handleResize);
-    //   horizontal.style.willChange = 'auto';
-    //   cardsImgs.forEach((img) => {
-    //     img.style.willChange = 'auto';
-    //   });
-    //   ScrollTrigger.getAll().forEach((trigger) => {
-    //     if (trigger.trigger === container) {
-    //       trigger.kill();
-    //     }
-    //   });
-    // };
+    window.cleanupPrjAnimation = function () {
+      window.removeEventListener('resize', handleResize);
+      horizontal.style.willChange = 'auto';
+      cardsImgs.forEach((img) => {
+        img.style.willChange = 'auto';
+      });
+      ScrollTrigger.getAll().forEach((trigger) => {
+        if (trigger.trigger === container) {
+          trigger.kill();
+        }
+      });
+    };
   }
 
   // Skills Cards
@@ -647,8 +654,40 @@ $(document).ready(async function () {
     });
   }
 
-  //  Kimfund, ITSM, Sakura, JobsOnDemand, Bambuup
+  // Signature Loading
+  function signatureLoading() {
+    const loading = document.querySelector('.loading');
+    const svg = document.querySelector('.loading svg');
+    const svgPath = svg.querySelector('path.cls-1');
 
+    const tl = gsap.timeline({
+      onComplete: () => {
+        gsap.to(loading, {
+          opacity: 0,
+          delay: 0.5,
+          duration: 1,
+          ease: 'power2.inOut',
+          onComplete: () => {
+            loading.style.display = 'none';
+          }
+        });
+      }
+    });
+
+    tl.fromTo(svgPath,
+      {
+        drawSVG: '0%'
+      },
+      {
+        drawSVG: '100%',
+        duration: 2,
+        ease: 'power2.inOut'
+      }
+    );
+  }
+
+
+  signatureLoading();
   mobileDetect();
   viewContact();
   await smoothLenis();
@@ -662,27 +701,25 @@ $(document).ready(async function () {
 
   // Init
   function init() {
-    // $('body')
-    //   .imagesLoaded()
-    //   .progress({ background: true }, function (instance, image) { })
-    //   .always(function (instance) {
-    //     setTimeout(() => {
-    //         $('.loading').addClass('--hide')
-    //     }, 150)
-    //   })
-    //   .fail(function () {
-    //     // console.log('all images loaded, at least one is broken');
-    //   })
-    //   .done(function (instance) {
-    //     // console.log('all images successfully loaded');
-    //   });
+    $('body')
+      .imagesLoaded()
+      .progress({ background: true }, function (instance, image) { })
+      .always(function (instance) {
+        //  TODO:
+      })
+      .fail(function () {
+        console.log('all images loaded, at least one is broken');
+      })
+      .done(function (instance) {
+        console.log('all images successfully loaded');
+      });
   }
   init();
 
   // Global cleanup function for page unload
   window.addEventListener('beforeunload', function () {
-    // if (window.cleanupSquares) window.cleanupSquares();
-    // if (window.cleanupSilk) window.cleanupSilk();
-    // if (window.cleanupPrjAnimation) window.cleanupPrjAnimation();
+    if (window.cleanupSquares) window.cleanupSquares();
+    if (window.cleanupSilk) window.cleanupSilk();
+    if (window.cleanupPrjAnimation) window.cleanupPrjAnimation();
   });
 });

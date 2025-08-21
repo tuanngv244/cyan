@@ -386,6 +386,39 @@ sub {
   }
 }
 
+
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: $main-bg-cl;
+  width: 100vw;
+  height: 100vh;
+  @include mid(true);
+
+  svg {
+    width: 500px;
+    height: 300px;
+
+    path.cls-1 {
+      fill: transparent;
+      stroke: $black-cl;
+      stroke-width: 6;
+      // stroke-linecap: round;
+      // stroke-linejoin: round;
+      stroke-miterlimit: 10;
+    }
+  }
+
+  @include xs {
+    svg {
+      width: 300px;
+      height: 200px;
+    }
+  }
+}
+
 .bg-purple {
   background-color: $purple-cl;
   padding: 0.5rem 0.75rem;

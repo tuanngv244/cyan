@@ -49,8 +49,8 @@
     --spc-fs: 8rem;
     --spc-lh: 9rem;
 
-    --h1-fs: 4rem;
-    --h1-lh: 5rem;
+    --h1-fs: 5rem;
+    --h1-lh: 6rem;
   }
 
   @media (max-width: 1680px) {
@@ -68,8 +68,8 @@
     --spc-fs: 6rem;
     --spc-lh: 7rem;
 
-    --h1-fs: 5rem;
-    --h1-lh: 6rem;
+    --h1-fs: 4rem;
+    --h1-lh: 5rem;
   }
 
   @media (max-width: 1024px) {
@@ -127,6 +127,8 @@ $ff-pop-italic: 'Pop-Italic';
 
 /*primary colors*/
 $main-cl: #0b5f91;
+$main-bg-cl: #f9f4eb;
+
 
 $white-cl: #ffffff;
 $yellow-light-cl: #fdf4d9;
@@ -175,8 +177,18 @@ $sm-min: 992px;
 $md-min: 1200px;
 $lg-min: 1600px;
 
-$xxs-max: ($xxs-min - 1); // Small Mobile
-$xs-max: ($xs-min - 1); // Mobile
-$sm-max: ($sm-min - 1); // Tablet
-$md-max: ($md-min - 1); // Desktop
-$lg-max: ($lg-min - 1); // Large Desktop
+$xxs-max: (
+  $xxs-min - 1
+); // Small Mobile
+$xs-max: (
+  $xs-min - 1
+); // Mobile
+$sm-max: (
+  $sm-min - 1
+); // Tablet
+$md-max: (
+  $md-min - 1
+); // Desktop
+$lg-max: (
+  $lg-min - 1
+); // Large Desktop
