@@ -1,5 +1,5 @@
 /////////////////////////// SCROLL ///////////////////////////////
-$(document).ready(async function () {
+$(document).ready(function () {
   let lenis,
     mobile,
     tablet,
@@ -686,18 +686,20 @@ $(document).ready(async function () {
     );
   }
 
-
-  signatureLoading();
-  mobileDetect();
-  viewContact();
-  await smoothLenis();
-  bgSquares();
-  bgSilk();
-  prjAnimation();
-  exploreCards();
-  skillsCards();
-  hoverFixed();
-  parallaxStories();
+  async function fetchFeatures() {
+    signatureLoading();
+    mobileDetect();
+    viewContact();
+    await smoothLenis();
+    bgSquares();
+    bgSilk();
+    prjAnimation();
+    exploreCards();
+    skillsCards();
+    hoverFixed();
+    parallaxStories();
+  }
+  fetchFeatures()
 
   // Init
   function init() {
@@ -722,4 +724,6 @@ $(document).ready(async function () {
     if (window.cleanupSilk) window.cleanupSilk();
     if (window.cleanupPrjAnimation) window.cleanupPrjAnimation();
   });
+
 });
+
